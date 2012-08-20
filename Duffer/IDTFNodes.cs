@@ -17,52 +17,6 @@ namespace Duffer
 
       public NodeType Type { get; protected set; }
 
-
-      // FIXME - Check that the ResourceList.Type is appropriate for this Node.Type
-      private ResourceList _resourceList;
-      public ResourceList Resources 
-      { 
-         get
-         {
-            return _resourceList;  
-         }
-         set
-         {
-            
-            if ((value.Type == ResourceListType.MOTION) || (value.Type == ResourceListType.SHADER))
-            {
-               throw new InvalidOperationException("Motions and Shader resource lists are not valid Resources for a Model, View or Light");
-            }
-            else if (this.Type==NodeType.GROUP)
-            {
-               throw new InvalidOperationException("Resource lists are not valid for Group nodes");
-            }
-            else
-            {
-
-               if ((value.Type==ResourceListType.MODEL) && (this.Type==NodeType.MODEL))
-               {
-                  _resourceList = value;
-               }
-               else if ((value.Type==ResourceListType.VIEW) && (this.Type==NodeType.VIEW))
-               {
-                  _resourceList = value;
-               }
-               else if ((value.Type == ResourceListType.LIGHT) && (this.Type == NodeType.LIGHT))
-               {
-                  _resourceList = value;
-               }
-               else
-               {
-                  throw new InvalidOperationException("You are attempting to assign the wrong Resource list type to this Node");
-               }
-
-
-            }
-         }
-
-      }
-
       public Dictionary<string, Transform4x4> ParentList { get; set; }
 
       protected void WriteCommonOutputWithoutMetaData(StreamWriter toStream)
@@ -105,6 +59,8 @@ namespace Duffer
 
       }
 
+      public ModelResource Resource { get; set; }
+
       public void WriteOutput(StreamWriter toStream)
       {
          base.WriteCommonOutputWithoutMetaData(toStream);
@@ -123,6 +79,8 @@ namespace Duffer
          this.Type = NodeType.LIGHT;
 
       }
+
+      public LightResource Resource { get; set; }
 
       public void WriteOutput(StreamWriter toStream)
       {
@@ -143,6 +101,7 @@ namespace Duffer
 
       }
 
+      public ViewResource Resource { get; set; }
 
       public void WriteOutput(StreamWriter toStream)
       {

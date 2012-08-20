@@ -65,11 +65,11 @@ namespace Duffer.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("empty model")]
+        [NUnit.Framework.DescriptionAttribute("empty scene")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void EmptyModel()
+        public virtual void EmptyScene()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("empty model", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("empty scene", new string[] {
                         "mytag"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
@@ -80,6 +80,48 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
 #line 9
  testRunner.Then("the contents of the current file should be", "FILE_FORMAT \"IDTF\"\nFORMAT_VERSION 100\n", ((TechTalk.SpecFlow.Table)(null)));
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("scene with one model")]
+        public virtual void SceneWithOneModel()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("scene with one model", ((string[])(null)));
+#line 16
+this.ScenarioSetup(scenarioInfo);
+#line 17
+ testRunner.Given("I have a new current scene");
+#line 18
+ testRunner.And("the current scene contains a single model named \"Model1\"");
+#line 19
+ testRunner.And("the model named \"Model1\" has one parent");
+#line 20
+ testRunner.And("the model named \"Model1\" has a resource named \"LightBoxModel\"");
+#line 21
+ testRunner.When("I export the current scene to a file");
+#line hidden
+#line 22
+ testRunner.Then("the contents of the current file should be", @"FILE_FORMAT ""IDTF""
+FORMAT_VERSION 100
+
+NODE ""MODEL"" {
+	NODE_NAME ""Model1""
+	PARENT_LIST {
+		PARENT_COUNT 1
+		PARENT 0 {
+			PARENT_NAME ""<NULL>""
+			PARENT_TM {
+				1.000000 0.000000 0.000000 0.000000
+				0.000000 1.000000 0.000000 0.000000
+				0.000000 0.000000 1.000000 0.000000
+				0.000000 0.000000 0.000000 1.000000
+			}
+		}
+	}
+	RESOURCE_NAME ""LightBoxModel""
+}", ((TechTalk.SpecFlow.Table)(null)));
 #line hidden
             this.ScenarioCleanup();
         }
