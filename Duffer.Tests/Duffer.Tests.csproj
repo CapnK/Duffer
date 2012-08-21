@@ -12,7 +12,8 @@
     <AssemblyName>Duffer.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,9 +34,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.1.12217, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\references\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,8 +48,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.SpecFlow">
-      <HintPath>..\references\TechTalk.SpecFlow.dll</HintPath>
+    <Reference Include="TechTalk.SpecFlow, Version=1.9.0.77, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -54,17 +59,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BasicFile.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\WritingLightResources.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WritingLightResources.feature</DependentUpon>
-    </Compile>
     <Compile Include="FileHelpers.cs" />
     <Compile Include="IDTFNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\FileSteps.cs" />
     <Compile Include="Steps\SceneSteps.cs" />
     <Compile Include="UnitTests\ExtensionMethodTests.cs" />
+    <Compile Include="UnitTests\Transform4x4Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Duffer\Duffer.csproj">
@@ -73,14 +74,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Features\BasicFile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BasicFile.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\WritingLightResources.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>WritingLightResources.feature.cs</LastGenOutput>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
