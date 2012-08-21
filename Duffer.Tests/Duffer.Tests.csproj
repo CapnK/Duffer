@@ -64,7 +64,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\FileSteps.cs" />
     <Compile Include="Steps\SceneSteps.cs" />
+    <Compile Include="UnitTests\BasicTypesTests.cs" />
     <Compile Include="UnitTests\ExtensionMethodTests.cs" />
+    <Compile Include="UnitTests\ParentTests.cs" />
     <Compile Include="UnitTests\Transform4x4Tests.cs" />
   </ItemGroup>
   <ItemGroup>

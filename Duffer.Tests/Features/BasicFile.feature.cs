@@ -79,7 +79,7 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I export the current scene to a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("the contents of the current file should be", "FILE_FORMAT \"IDTF\"\nFORMAT_VERSION 100\n", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the contents of the current file should be", "FILE_FORMAT \"IDTF\"\r\nFORMAT_VERSION 100\r\n", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

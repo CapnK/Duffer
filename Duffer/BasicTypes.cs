@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 
 using Duffer.Properties;
+using System.IO;
 
 
 namespace Duffer
@@ -52,6 +53,8 @@ namespace Duffer
              this.W.ToString(Resources.SixDecPlFormat));
       }
    }
+
+
 
    
 
