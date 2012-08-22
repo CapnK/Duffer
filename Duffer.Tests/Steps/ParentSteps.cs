@@ -17,5 +17,18 @@ namespace Duffer.Tests.Steps
          p.Transform = new Transform4x4();
       }
 
+      [Given(@"the parent named ""(.*)"" has an translation only transform matrix of ""(\d*)"", ""(\d*), ""(\d*)""")]
+      public void GivenTheParentNamedBox_GroupHasAnTranslationOnlyTransformMatrixOfXYZ(string parentName, int xDisp, int yDisp, int zDisp)
+      {
+         Parent p = ScenarioContext.Current.Get<Parent>(parentName);
+
+         p.Transform = new Transform4x4();
+
+         p.Transform.c3r0 = xDisp;
+         p.Transform.c3r1 = yDisp;
+         p.Transform.c3r2 = zDisp;
+      }
+
+
    }
 }

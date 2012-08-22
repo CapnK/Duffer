@@ -39,6 +39,7 @@ Scenario: scene with one group
 			}
 		}
 	}
+
 	"""
 
 Scenario: scene with a group and two parents
@@ -78,6 +79,7 @@ Scenario: scene with a group and two parents
 			}
 		}
 	}
+
 	"""
 
 
@@ -110,6 +112,7 @@ Scenario: scene with two groups and one parent each
 			}
 		}
 	}
+
 	NODE "GROUP" {
 		NODE_NAME "Group2"
 		PARENT_LIST {
@@ -125,4 +128,5 @@ Scenario: scene with two groups and one parent each
 			}
 		}
 	}
+
 	"""

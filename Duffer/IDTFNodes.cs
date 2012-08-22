@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using Duffer.Properties;
+
 namespace Duffer
 {
    // References:
@@ -67,6 +69,7 @@ namespace Duffer
          base.WriteMetaData(toStream);
 
          toStream.WriteLine("}");
+         toStream.WriteLine();
       }
 
    }
@@ -105,6 +108,7 @@ namespace Duffer
          base.WriteMetaData(toStream);
 
          toStream.WriteLine("}");
+         toStream.WriteLine();
       }
 
    }
@@ -134,6 +138,7 @@ namespace Duffer
          base.WriteMetaData(toStream);
 
          toStream.WriteLine("}");
+         toStream.WriteLine();
       }
 
    }
@@ -143,25 +148,64 @@ namespace Duffer
       public View()
       {
          this.Type = NodeType.VIEW;
-
+         this.ViewData = new ViewData();
       }
 
       public ViewResource Resource { get; set; }
+      public ViewData ViewData { get; set; }
 
       public void WriteOutput(StreamWriter toStream)
       {
          toStream.WriteLine("NODE \"VIEW\" {");
          base.WriteCommonOutputWithoutMetaData(toStream);
 
-         //TODO - Add View data
+         
          if (this.Resource != null)
          {
             toStream.WriteLine(String.Format("\tRESOURCE_NAME \"{0}\"", this.Resource.Name));
          }
 
+         //Add View data
+         if (this.ViewData != null)
+         {
+            this.ViewData.WriteOutput(toStream);
+         }
+
          base.WriteMetaData(toStream);
          toStream.WriteLine("}");
+         toStream.WriteLine();
       }
 
+   }
+
+   public class ViewData
+   {
+      /// <summary>
+      /// Create a default view with some basic settings
+      /// </summary>
+      /// <remarks>Createa  perspective view, in Pixel units with a 34.5 deg projection</remarks>
+      public ViewData()
+      {
+         this.ViewType = ViewType.PERSPECTIVE;
+         this.ViewAttributeScreenUnit = ViewAttributeScreenUnit.PIXEL;
+         this.Projection = 34.515877;
+      }
+
+      public ViewType ViewType { get; set; }
+      public ViewAttributeScreenUnit ViewAttributeScreenUnit { get; set; }
+      public double Projection { get; set; }
+
+      public void WriteOutput(StreamWriter toStream)
+      {
+         toStream.WriteLine("\tVIEW_DATA {");
+         toStream.WriteLine("\t\tVIEW_TYPE \"{0}\"", this.ViewType.ToString());
+         toStream.WriteLine("\t\tVIEW_ATTRIBUTE_SCREEN_UNIT \"{0}\"", this.ViewAttributeScreenUnit.ToString());
+         toStream.WriteLine("\t\tVIEW_PROJECTION {0}", this.Projection.ToString(Resources.SixDecPlFormat));
+ 
+         //TODO - More View settings
+         
+         toStream.WriteLine("\t}");
+         
+      }
    }
 }

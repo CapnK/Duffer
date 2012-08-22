@@ -120,7 +120,8 @@ NODE ""GROUP"" {
 			}
 		}
 	}
-}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+}
+", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -130,24 +131,24 @@ NODE ""GROUP"" {
         public virtual void SceneWithAGroupAndTwoParents()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("scene with a group and two parents", ((string[])(null)));
-#line 44
-this.ScenarioSetup(scenarioInfo);
 #line 45
- testRunner.Given("I have a new current scene", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 46
- testRunner.And("the current scene contains a group named \"Group1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a new current scene", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 47
- testRunner.And("the group named \"Group1\" has a parent called \"Parent1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the current scene contains a group named \"Group1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 48
- testRunner.And("the parent named \"Parent1\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the group named \"Group1\" has a parent called \"Parent1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 49
- testRunner.And("the group named \"Group1\" has a parent called \"Parent2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the parent named \"Parent1\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 50
- testRunner.And("the parent named \"Parent2\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the group named \"Group1\" has a parent called \"Parent2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 51
+ testRunner.And("the parent named \"Parent2\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
  testRunner.When("I export the current scene to a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 52
+#line 53
  testRunner.Then("the contents of the current file should be", @"FILE_FORMAT ""IDTF""
 FORMAT_VERSION 100
 
@@ -174,7 +175,8 @@ NODE ""GROUP"" {
 			}
 		}
 	}
-}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+}
+", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -184,26 +186,26 @@ NODE ""GROUP"" {
         public virtual void SceneWithTwoGroupsAndOneParentEach()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("scene with two groups and one parent each", ((string[])(null)));
-#line 84
-this.ScenarioSetup(scenarioInfo);
-#line 85
- testRunner.Given("I have a new current scene", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 86
- testRunner.And("the current scene contains a group named \"Group1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 87
- testRunner.And("the current scene contains a group named \"Group2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a new current scene", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 88
- testRunner.And("the group named \"Group1\" has a parent called \"Parent1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the current scene contains a group named \"Group1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 89
- testRunner.And("the parent named \"Parent1\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the current scene contains a group named \"Group2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 90
- testRunner.And("the group named \"Group2\" has a parent called \"Parent2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the group named \"Group1\" has a parent called \"Parent1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 91
- testRunner.And("the parent named \"Parent2\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the parent named \"Parent1\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 92
+ testRunner.And("the group named \"Group2\" has a parent called \"Parent2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.And("the parent named \"Parent2\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
  testRunner.When("I export the current scene to a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 93
+#line 95
  testRunner.Then("the contents of the current file should be", @"FILE_FORMAT ""IDTF""
 FORMAT_VERSION 100
 
@@ -222,6 +224,7 @@ NODE ""GROUP"" {
 		}
 	}
 }
+
 NODE ""GROUP"" {
 	NODE_NAME ""Group2""
 	PARENT_LIST {
@@ -236,7 +239,8 @@ NODE ""GROUP"" {
 			}
 		}
 	}
-}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+}
+", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

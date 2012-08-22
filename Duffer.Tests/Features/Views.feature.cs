@@ -101,7 +101,13 @@ NODE ""VIEW"" {
 			}
 		}
 	}
-}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+	VIEW_DATA {
+		VIEW_TYPE ""PERSPECTIVE""
+		VIEW_ATTRIBUTE_SCREEN_UNIT ""PIXEL""
+		VIEW_PROJECTION 34.515877
+	}
+}
+", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

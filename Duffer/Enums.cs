@@ -32,4 +32,17 @@ namespace Duffer
       BACK,
       BOTH
    }
+
+
+   public enum ViewType
+   {
+      PERSPECTIVE,
+      ORTHO
+   }
+
+   public enum ViewAttributeScreenUnit
+   {
+      PIXEL,
+      PERCENTAGE
+   }
 }

@@ -27,5 +27,11 @@ Scenario: scene with one view
 				}
 			}
 		}
+		VIEW_DATA {
+			VIEW_TYPE "PERSPECTIVE"
+			VIEW_ATTRIBUTE_SCREEN_UNIT "PIXEL"
+			VIEW_PROJECTION 34.515877
+		}
 	}
+
 	"""

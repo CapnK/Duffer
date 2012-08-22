@@ -104,7 +104,79 @@ NODE ""MODEL"" {
 		}
 	}
 	RESOURCE_NAME ""BoxModel""
-}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+}
+", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("scene with two model nodes")]
+        public virtual void SceneWithTwoModelNodes()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("scene with two model nodes", ((string[])(null)));
+#line 36
+this.ScenarioSetup(scenarioInfo);
+#line 37
+ testRunner.Given("I have a new current scene", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 38
+ testRunner.And("the current scene contains a model named \"Box01\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.And("the model named \"Box01\" has a parent called \"Parent1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.And("the model named \"Box01\" has a resource called \"BoxModel\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+ testRunner.And("the parent named \"Parent1\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+ testRunner.And("the current scene contains a model named \"Box02\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+ testRunner.And("the model named \"Box02\" has a parent called \"Box_Group\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+ testRunner.And("the model named \"Box02\" has a resource called \"LightBoxModel\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+ testRunner.And("the parent named \"Box_Group\" has an translation only transform matrix of \"25\", \"2" +
+                    "6, \"27\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+ testRunner.When("I export the current scene to a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 47
+ testRunner.Then("the contents of the current file should be", @"FILE_FORMAT ""IDTF""
+FORMAT_VERSION 100
+
+NODE ""MODEL"" {
+	NODE_NAME ""Box01""
+	PARENT_LIST {
+		PARENT_COUNT 1
+		PARENT 0 {
+			PARENT_NAME ""Parent1""
+			PARENT_TM {
+				1.000000 0.000000 0.000000 0.000000
+				0.000000 1.000000 0.000000 0.000000
+				0.000000 0.000000 1.000000 0.000000
+				0.000000 0.000000 0.000000 1.000000
+			}
+		}
+	}
+	RESOURCE_NAME ""BoxModel""
+}
+
+NODE ""MODEL"" {
+	NODE_NAME ""Box02""
+	PARENT_LIST {
+		PARENT_COUNT 1
+		PARENT 0 {
+			PARENT_NAME ""Box_Group""
+			PARENT_TM {
+				1.000000 0.000000 0.000000 0.000000
+				0.000000 1.000000 0.000000 0.000000
+				0.000000 0.000000 1.000000 0.000000
+				25.000000 26.000000 27.000000 1.000000
+			}
+		}
+	}
+	RESOURCE_NAME ""LightBoxModel""
+}
+", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
