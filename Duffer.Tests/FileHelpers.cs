@@ -86,7 +86,7 @@ namespace Duffer.Tests
 
       internal static void AssertStringArrarysEqual(string[] strings1, string[] strings2)
       {
-         Assert.That(strings1.Length, Iz.EqualTo(strings2.Length));
+         Assert.That(strings1.Length, Iz.EqualTo(strings2.Length), "The number of strings in the array don't match");
 
          for (int i = 0; i < strings1.Length; i++)
          {

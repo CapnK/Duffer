@@ -59,11 +59,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BasicFile.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Models.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Models.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Views.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Views.feature</DependentUpon>
+    </Compile>
     <Compile Include="FileHelpers.cs" />
     <Compile Include="IDTFNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\FileSteps.cs" />
+    <Compile Include="Steps\GroupSteps.cs" />
+    <Compile Include="Steps\ModelSteps.cs" />
+    <Compile Include="Steps\ParentSteps.cs" />
     <Compile Include="Steps\SceneSteps.cs" />
+    <Compile Include="Steps\ViewSteps.cs" />
     <Compile Include="UnitTests\BasicTypesTests.cs" />
     <Compile Include="UnitTests\ExtensionMethodTests.cs" />
     <Compile Include="UnitTests\ParentTests.cs" />
@@ -80,6 +94,14 @@
     <None Include="Features\BasicFile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BasicFile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Models.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Models.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Views.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Views.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

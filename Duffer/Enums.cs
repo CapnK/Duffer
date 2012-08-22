@@ -21,4 +21,15 @@ namespace Duffer
       SHADER,
       MOTION
    }
+
+   /// <summary>
+   /// Set the model visibility: NOT IMPLEMENTED
+   /// </summary>
+   public enum ModelVisibility
+   {
+      NONE,
+      FRONT,
+      BACK,
+      BOTH
+   }
 }

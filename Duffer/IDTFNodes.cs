@@ -17,11 +17,28 @@ namespace Duffer
 
       public NodeType Type { get; protected set; }
 
-      public Dictionary<string, Transform4x4> ParentList { get; set; }
+      private List<Parent> _parents;
+      public List<Parent> Parents 
+      { 
+         get
+         {
+            if (_parents == null) { _parents = new List<Parent>(); }
+            return _parents;
+         }
+
+         set
+         {
+            _parents = value;
+         }
+      }
 
       protected void WriteCommonOutputWithoutMetaData(StreamWriter toStream)
       {
-
+         toStream.WriteLine(String.Format("\tNODE_NAME \"{0}\"", this.Name));
+         if (_parents != null)
+         {
+            _parents.Export(toStream);
+         }
       }
 
       protected void WriteMetaData(StreamWriter toStream)
@@ -42,11 +59,14 @@ namespace Duffer
 
       public void WriteOutput(StreamWriter toStream)
       {
+         toStream.WriteLine("NODE \"GROUP\" {");
          base.WriteCommonOutputWithoutMetaData(toStream);
 
          //Group nodes have no other content 
 
          base.WriteMetaData(toStream);
+
+         toStream.WriteLine("}");
       }
 
    }
@@ -61,13 +81,30 @@ namespace Duffer
 
       public ModelResource Resource { get; set; }
 
+      // Not implemented yet, no examples in the standard u3d samples
+      //public ModelVisibility? Visibility { get; set; }
+
       public void WriteOutput(StreamWriter toStream)
       {
+         toStream.WriteLine("NODE \"MODEL\" {");
          base.WriteCommonOutputWithoutMetaData(toStream);
 
          //TODO - Add Model data
 
+         if (this.Resource != null)
+         {
+            toStream.WriteLine(String.Format("\tRESOURCE_NAME \"{0}\"", this.Resource.Name));
+         }
+
+         // Not implemented yet, no examples in the standard u3d samples
+         //if (this.Visibility.HasValue)
+         //{
+         //   toStream.WriteLine(String.Format("\tMODEL_VISIBILITY \"{0}\"", this.Visibility.Value.ToString()));
+         //}
+
          base.WriteMetaData(toStream);
+
+         toStream.WriteLine("}");
       }
 
    }
@@ -84,11 +121,19 @@ namespace Duffer
 
       public void WriteOutput(StreamWriter toStream)
       {
+         toStream.WriteLine("NODE \"LIGHT\" {");
          base.WriteCommonOutputWithoutMetaData(toStream);
 
          //TODO - Add Light data
+
+         if (this.Resource != null)
+         {
+            toStream.WriteLine(String.Format("\tRESOURCE_NAME \"{0}\"", this.Resource.Name));
+         }
          
          base.WriteMetaData(toStream);
+
+         toStream.WriteLine("}");
       }
 
    }
@@ -105,11 +150,17 @@ namespace Duffer
 
       public void WriteOutput(StreamWriter toStream)
       {
+         toStream.WriteLine("NODE \"VIEW\" {");
          base.WriteCommonOutputWithoutMetaData(toStream);
 
          //TODO - Add View data
+         if (this.Resource != null)
+         {
+            toStream.WriteLine(String.Format("\tRESOURCE_NAME \"{0}\"", this.Resource.Name));
+         }
 
          base.WriteMetaData(toStream);
+         toStream.WriteLine("}");
       }
 
    }

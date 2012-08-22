@@ -75,11 +75,24 @@ namespace Duffer
 
    public class ModelResource
    {
+      public ModelResource(string name)
+      {
+         this.Name = name;
+      }
+
+      public string Name { get; set; }
 
    }
 
    public class ViewResource
    {
+      public ViewResource(string name)
+      {
+         this.Name = name;
+      }
+
+      public string Name { get; set; }
+
 
    }
 

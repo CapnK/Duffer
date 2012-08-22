@@ -6,6 +6,10 @@ using System.Text;
 
 namespace Duffer
 {
+   /// <summary>
+   /// The Scene is the root node in the IDTF file, all objects should be aded to the scene, 
+   /// and then the scene is exported to a file
+   /// </summary>
    public class IDTFScene
    {
 
@@ -140,14 +144,32 @@ namespace Duffer
         using (var output = new StreamWriter(toFile))
          {
 
-            // Header
+            //<FILE_HEADER>
             output.WriteLine("FILE_FORMAT \"IDTF\"");
             output.WriteLine("FORMAT_VERSION 100");
             output.WriteLine();
 
+            //<SCENE_DATA>
+            //<FILE_REFERENCE>
+            // NOT YET IMPLEMENTED
 
+            //<NODES> - groups
+            foreach (Group g in this.Groups)
+            {
+               g.WriteOutput(output);
+            }
 
+            //<NODES> - Views
+            foreach (View v in this.Views)
+            {
+               v.WriteOutput(output);
+            }
 
+            //<NODES> - Models
+            foreach (Model m in this.Models)
+            {
+               m.WriteOutput(output);
+            }
             
             output.Flush();
             output.Close();

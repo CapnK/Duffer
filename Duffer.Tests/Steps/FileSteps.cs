@@ -50,7 +50,7 @@ namespace Duffer.Tests.Steps
             var filename = ScenarioContext.Current.Get<string>("currentFile");
 
             Console.WriteLine(String.Format("Deleting: {0}", filename));
-            System.IO.File.Delete(filename);
+            //System.IO.File.Delete(filename);
          }
       }
 
