@@ -56,4 +56,43 @@ namespace Duffer
         
       }
    }
+
+   //internal static class ShadingDescriptionExtensionmethods
+   //{
+
+
+   //   public static void Export<T>(this T list, StreamWriter toStream)
+   //where T : IList<ShadingDescription>
+   //   {
+   //      toStream.WriteLine("\t\t\tMODEL_SHADING_DESCRIPTION_LIST {");
+   //      for (int i = 0; i < list.Count; i++)
+   //      {
+   //         //note: double {{ wil output as single { in string.format
+   //         toStream.WriteLine(String.Format("\t\t\t\tSHADING_DESCRIPTION {0} {{", i));
+   //         list.ElementAt(i).Export(toStream);
+   //         toStream.WriteLine("\t\t\t\t}");
+   //      }
+
+   //      toStream.WriteLine("\t\t\t}");
+
+   //   }
+
+   //}
+
+   //internal static class TextCoordExtensionmethods
+   //{
+
+   //   public static void Export<T>(this T list, StreamWriter toStream)
+   //where T : IList<TextureCoordDimension>
+   //   {
+   //      toStream.WriteLine("\t\t\t\t\tTEXTURE_COORD_DIMENSION_LIST {");
+   //      for (int i = 0; i < list.Count; i++)
+   //      {
+   //         list.ElementAt(i).Export(toStream);
+   //      }
+
+   //      toStream.WriteLine("\t\t\t\t\t}");
+
+   //   }
+   //}
 }

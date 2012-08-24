@@ -45,4 +45,12 @@ namespace Duffer
       PIXEL,
       PERCENTAGE
    }
+
+
+   public enum ModelType
+   {
+      MESH,
+      POINT_SET,
+      LINE_SET
+   }
 }
