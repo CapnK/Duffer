@@ -38,7 +38,7 @@ namespace Duffer
          toStream.WriteLine(String.Format("\t\t\t\tTEXTURE_LAYER_COUNT {0}", this.TextureLayerCount));
          if (_textureCoordDimList != null)
          {
-            //_textureCoordDimList.Export(toStream);
+            ListExtensions.ExportTextureCoordListToStream(_textureCoordDimList, toStream);
          }
          toStream.WriteLine(String.Format("\t\t\t\tSHADER_ID {0}", this.ShaderID));
       }

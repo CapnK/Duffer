@@ -39,7 +39,7 @@ namespace Duffer
          toStream.WriteLine(String.Format("\tNODE_NAME \"{0}\"", this.Name));
          if (_parents != null)
          {
-            _parents.Export(toStream);
+            ListExtensions.ExportParentListToStream(_parents, toStream);
          }
       }
 

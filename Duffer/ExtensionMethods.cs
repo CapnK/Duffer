@@ -31,6 +31,11 @@ namespace Duffer
       }
 
 
+
+      // This got too difficult to do as ExtensionMethods methods, once multiple
+       // List<T> constrains were introduced
+       //Instead that are statics on the ListExtension class
+
       // Create an extension method in IList<t> that is constrained to IList<Parent>!
       //http://grabbagoft.blogspot.com.au/2007/07/constrained-generic-extension-methods.html
       /// <summary>
@@ -39,60 +44,22 @@ namespace Duffer
       /// <typeparam name="T"></typeparam>
       /// <param name="list"></param>
       /// <param name="toStream"></param>
-      public static void Export<T>(this T list, StreamWriter toStream)
-         where T : IList<Parent>
-      {
-         toStream.WriteLine("\tPARENT_LIST {");
-         toStream.WriteLine(String.Format("\t\tPARENT_COUNT {0}", list.Count));
-         for (int i = 0; i < list.Count; i++)
-         {
-            //note: double {{ wil output as single { in string.format
-            toStream.WriteLine(String.Format("\t\tPARENT {0} {{", i));
-            list.ElementAt(i).Export(toStream);
-            toStream.WriteLine("\t\t}");
-         }
+      //public static void Export<T>(this T list, StreamWriter toStream)
+      //   where T : IList<Parent>
+      //{
 
-         toStream.WriteLine("\t}");
+      //   toStream.WriteLine("\tPARENT_LIST {");
+      //   toStream.WriteLine(String.Format("\t\tPARENT_COUNT {0}", list.Count));
+      //   for (int i = 0; i < list.Count; i++)
+      //   {
+      //      //note: double {{ wil output as single { in string.format
+      //      toStream.WriteLine(String.Format("\t\tPARENT {0} {{", i));
+      //      list.ElementAt(i).Export(toStream);
+      //      toStream.WriteLine("\t\t}");
+      //   }
+
+      //   toStream.WriteLine("\t}");
         
-      }
+      //}
    }
-
-   //internal static class ShadingDescriptionExtensionmethods
-   //{
-
-
-   //   public static void Export<T>(this T list, StreamWriter toStream)
-   //where T : IList<ShadingDescription>
-   //   {
-   //      toStream.WriteLine("\t\t\tMODEL_SHADING_DESCRIPTION_LIST {");
-   //      for (int i = 0; i < list.Count; i++)
-   //      {
-   //         //note: double {{ wil output as single { in string.format
-   //         toStream.WriteLine(String.Format("\t\t\t\tSHADING_DESCRIPTION {0} {{", i));
-   //         list.ElementAt(i).Export(toStream);
-   //         toStream.WriteLine("\t\t\t\t}");
-   //      }
-
-   //      toStream.WriteLine("\t\t\t}");
-
-   //   }
-
-   //}
-
-   //internal static class TextCoordExtensionmethods
-   //{
-
-   //   public static void Export<T>(this T list, StreamWriter toStream)
-   //where T : IList<TextureCoordDimension>
-   //   {
-   //      toStream.WriteLine("\t\t\t\t\tTEXTURE_COORD_DIMENSION_LIST {");
-   //      for (int i = 0; i < list.Count; i++)
-   //      {
-   //         list.ElementAt(i).Export(toStream);
-   //      }
-
-   //      toStream.WriteLine("\t\t\t\t\t}");
-
-   //   }
-   //}
 }
