@@ -13,59 +13,139 @@ namespace Duffer.Tests
     [TestFixture]
     class ListExtensionsTests
     {
+        string _tempFilePath;
+        Mock<StreamWriter> _mockStream;
+        List<string> _lines = new List<string>();
+
+        [SetUp]
+        public void runBeforeAllTests()
+        {
+            // Create a tempfile so the StreamWriter can be instantiated
+            _tempFilePath = System.IO.Path.GetTempFileName();
+
+            // Clear out any previously captured streamwriter output
+            _lines.Clear();
+
+            // catch all the calls to the streamwriter
+            _mockStream = new Mock<StreamWriter>(_tempFilePath);
+            _mockStream.Setup(sw => sw.WriteLine(It.IsAny<string>()))
+               .Callback((string s) => _lines.Add(s));
+        }
+
+        [TearDown]
+        public void runAfterAlltests()
+        {
+            // Set callbase to true so we can dispose the underlying object (and release the file)
+            _mockStream.CallBase = true;
+            _mockStream.Object.Close();
+            _mockStream.Object.Dispose();
+
+            //cleanup
+            System.IO.File.Delete(_tempFilePath);
+        }
 
 
         [Test]
         public void should_export_a_parent_list_with_one_item()
         {
-            // Create a tempfile so the StreamWriter can be instantiated
-            var path = System.IO.Path.GetTempFileName();
+            
 
             // Create a simple list of parents
             List<Parent> parentList = new List<Parent>();
             parentList.Add(new Parent());
 
-            // create a mock stream writer
-            var mockStream = new Mock<StreamWriter>(path);
 
-            // catch all the calls to the streamwriter
-            List<string> lines = new List<string>();
-
-            mockStream.Setup(sw => sw.WriteLine(It.IsAny<string>()))
-               .Callback((string s) => lines.Add(s));
-
-
-            // write out the transform
-            ListExtensions.ExportParentListToStream(parentList, mockStream.Object);
+            // write out the list
+            ListExtensions.ExportParentListToStream(parentList, _mockStream.Object);
 
 
             // Check the result
-            Assert.That(lines.Count, Iz.EqualTo(12));
-            //      Assert.That(lines[0], Iz.EqualTo("				1.000000 0.000000 0.000000 0.000000"));
-            //      Assert.That(lines[1], Iz.EqualTo("				0.000000 1.000000 0.000000 0.000000"));
-            //      Assert.That(lines[2], Iz.EqualTo("				0.000000 0.000000 1.000000 0.000000"));
-            //      Assert.That(lines[3], Iz.EqualTo("				0.000000 0.000000 0.000000 1.000000"));
+            Assert.That(_lines.Count, Iz.EqualTo(12));
 
-            Assert.That(lines[0], Iz.EqualTo("\tPARENT_LIST {"));
-            Assert.That(lines[1], Iz.EqualTo("\t\tPARENT_COUNT 1"));
-            Assert.That(lines[2], Iz.EqualTo("\t\tPARENT 0 {"));
-            Assert.That(lines[3], Iz.EqualTo("\t\t\tPARENT_NAME \"<NULL>\""));
-            Assert.That(lines[4], Iz.EqualTo("\t\t\tPARENT_TM {"));
-            Assert.That(lines[5], Iz.EqualTo("\t\t\t\t1.000000 0.000000 0.000000 0.000000"));
-            Assert.That(lines[6], Iz.EqualTo("\t\t\t\t0.000000 1.000000 0.000000 0.000000"));
-            Assert.That(lines[7], Iz.EqualTo("\t\t\t\t0.000000 0.000000 1.000000 0.000000"));
-            Assert.That(lines[8], Iz.EqualTo("\t\t\t\t0.000000 0.000000 0.000000 1.000000"));
-            Assert.That(lines[9], Iz.EqualTo("\t\t\t}"));
-            Assert.That(lines[10], Iz.EqualTo("\t\t}"));
-            Assert.That(lines[11], Iz.EqualTo("\t}"));
+            Assert.That(_lines[0], Iz.EqualTo("\tPARENT_LIST {"));
+            Assert.That(_lines[1], Iz.EqualTo("\t\tPARENT_COUNT 1"));
+            Assert.That(_lines[2], Iz.EqualTo("\t\tPARENT 0 {"));
+            Assert.That(_lines[3], Iz.EqualTo("\t\t\tPARENT_NAME \"<NULL>\""));
+            Assert.That(_lines[4], Iz.EqualTo("\t\t\tPARENT_TM {"));
+            Assert.That(_lines[5], Iz.EqualTo("\t\t\t\t1.000000 0.000000 0.000000 0.000000"));
+            Assert.That(_lines[6], Iz.EqualTo("\t\t\t\t0.000000 1.000000 0.000000 0.000000"));
+            Assert.That(_lines[7], Iz.EqualTo("\t\t\t\t0.000000 0.000000 1.000000 0.000000"));
+            Assert.That(_lines[8], Iz.EqualTo("\t\t\t\t0.000000 0.000000 0.000000 1.000000"));
+            Assert.That(_lines[9], Iz.EqualTo("\t\t\t}"));
+            Assert.That(_lines[10], Iz.EqualTo("\t\t}"));
+            Assert.That(_lines[11], Iz.EqualTo("\t}"));
 
-            // Set callbase to true so we can dispose the underlying object (and release the file)
-            mockStream.CallBase = true;
-            mockStream.Object.Close();
-            mockStream.Object.Dispose();
+            
+        }
 
-            //cleanup
-            System.IO.File.Delete(path);
+        [Test]
+        public void should_export_a_shading_list_with_one_item()
+        {
+
+
+            // Create a simple list of ShadingDescription
+            List<ShadingDescription> aList = new List<ShadingDescription>();
+
+            var shadingDesc = new ShadingDescription();
+            shadingDesc.ShaderID = 1;
+
+
+            // write out the list
+            ListExtensions.ExportShadingListToStream(aList, _mockStream.Object);
+
+
+            // Check the result
+            Assert.That(_lines.Count, Iz.EqualTo(12));
+
+            //Assert.That(_lines[0], Iz.EqualTo("\tPARENT_LIST {"));
+            //Assert.That(_lines[1], Iz.EqualTo("\t\tPARENT_COUNT 1"));
+            //Assert.That(_lines[2], Iz.EqualTo("\t\tPARENT 0 {"));
+            //Assert.That(_lines[3], Iz.EqualTo("\t\t\tPARENT_NAME \"<NULL>\""));
+            //Assert.That(_lines[4], Iz.EqualTo("\t\t\tPARENT_TM {"));
+            //Assert.That(_lines[5], Iz.EqualTo("\t\t\t\t1.000000 0.000000 0.000000 0.000000"));
+            //Assert.That(_lines[6], Iz.EqualTo("\t\t\t\t0.000000 1.000000 0.000000 0.000000"));
+            //Assert.That(_lines[7], Iz.EqualTo("\t\t\t\t0.000000 0.000000 1.000000 0.000000"));
+            //Assert.That(_lines[8], Iz.EqualTo("\t\t\t\t0.000000 0.000000 0.000000 1.000000"));
+            //Assert.That(_lines[9], Iz.EqualTo("\t\t\t}"));
+            //Assert.That(_lines[10], Iz.EqualTo("\t\t}"));
+            //Assert.That(_lines[11], Iz.EqualTo("\t}"));
+
+
+        }
+
+        [Test]
+        public void should_export_a_texture_coord_list_list_with_one_item()
+        {
+
+
+            // Create a simple list of ShadingDescription
+            List<ShadingDescription> aList = new List<ShadingDescription>();
+
+            var shadingDesc = new ShadingDescription();
+            shadingDesc.ShaderID = 1;
+
+
+            // write out the list
+            ListExtensions.ExportShadingListToStream(aList, _mockStream.Object);
+
+
+            // Check the result
+            Assert.That(_lines.Count, Iz.EqualTo(12));
+
+            //Assert.That(_lines[0], Iz.EqualTo("\tPARENT_LIST {"));
+            //Assert.That(_lines[1], Iz.EqualTo("\t\tPARENT_COUNT 1"));
+            //Assert.That(_lines[2], Iz.EqualTo("\t\tPARENT 0 {"));
+            //Assert.That(_lines[3], Iz.EqualTo("\t\t\tPARENT_NAME \"<NULL>\""));
+            //Assert.That(_lines[4], Iz.EqualTo("\t\t\tPARENT_TM {"));
+            //Assert.That(_lines[5], Iz.EqualTo("\t\t\t\t1.000000 0.000000 0.000000 0.000000"));
+            //Assert.That(_lines[6], Iz.EqualTo("\t\t\t\t0.000000 1.000000 0.000000 0.000000"));
+            //Assert.That(_lines[7], Iz.EqualTo("\t\t\t\t0.000000 0.000000 1.000000 0.000000"));
+            //Assert.That(_lines[8], Iz.EqualTo("\t\t\t\t0.000000 0.000000 0.000000 1.000000"));
+            //Assert.That(_lines[9], Iz.EqualTo("\t\t\t}"));
+            //Assert.That(_lines[10], Iz.EqualTo("\t\t}"));
+            //Assert.That(_lines[11], Iz.EqualTo("\t}"));
+
+
         }
 
     }
