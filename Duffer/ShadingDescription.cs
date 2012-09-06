@@ -35,12 +35,12 @@ namespace Duffer
 
       internal void Export(StreamWriter toStream)
       {
-         toStream.WriteLine(String.Format("\t\t\t\tTEXTURE_LAYER_COUNT {0}", this.TextureLayerCount));
+         toStream.WriteLine(String.Format("\t\t\t\t\tTEXTURE_LAYER_COUNT {0}", this.TextureLayerCount));
          if (_textureCoordDimList != null)
          {
             ListExtensions.ExportTextureCoordListToStream(_textureCoordDimList, toStream);
          }
-         toStream.WriteLine(String.Format("\t\t\t\tSHADER_ID {0}", this.ShaderID));
+         toStream.WriteLine(String.Format("\t\t\t\t\tSHADER_ID {0}", this.ShaderID));
       }
 
    }
@@ -52,7 +52,7 @@ namespace Duffer
 
       internal void Export(StreamWriter toStream)
       {
-         toStream.WriteLine(String.Format("\t\t\t\t\tTEXTURE_LAYER {0}	DIMENSION: {1}", this.TextureLayer, this.Dimension));
+         toStream.WriteLine(String.Format("\t\t\t\t\t\tTEXTURE_LAYER {0}	DIMENSION: {1}", this.TextureLayer, this.Dimension));
       }
    }
 }

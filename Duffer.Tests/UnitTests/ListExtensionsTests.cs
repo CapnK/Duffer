@@ -88,6 +88,15 @@ namespace Duffer.Tests
 
             var shadingDesc = new ShadingDescription();
             shadingDesc.ShaderID = 1;
+            shadingDesc.TextureLayerCount = 1;
+
+            var textureCoords = new TextureCoordDimension();
+            textureCoords.TextureLayer = 0;
+            textureCoords.Dimension = 1;
+
+            shadingDesc.TextureCoordDimensionList.Add(textureCoords);
+
+            aList.Add(shadingDesc);
 
 
             // write out the list
@@ -95,20 +104,18 @@ namespace Duffer.Tests
 
 
             // Check the result
-            Assert.That(_lines.Count, Iz.EqualTo(12));
+            Assert.That(_lines.Count, Iz.EqualTo(9));
 
-            //Assert.That(_lines[0], Iz.EqualTo("\tPARENT_LIST {"));
-            //Assert.That(_lines[1], Iz.EqualTo("\t\tPARENT_COUNT 1"));
-            //Assert.That(_lines[2], Iz.EqualTo("\t\tPARENT 0 {"));
-            //Assert.That(_lines[3], Iz.EqualTo("\t\t\tPARENT_NAME \"<NULL>\""));
-            //Assert.That(_lines[4], Iz.EqualTo("\t\t\tPARENT_TM {"));
-            //Assert.That(_lines[5], Iz.EqualTo("\t\t\t\t1.000000 0.000000 0.000000 0.000000"));
-            //Assert.That(_lines[6], Iz.EqualTo("\t\t\t\t0.000000 1.000000 0.000000 0.000000"));
-            //Assert.That(_lines[7], Iz.EqualTo("\t\t\t\t0.000000 0.000000 1.000000 0.000000"));
-            //Assert.That(_lines[8], Iz.EqualTo("\t\t\t\t0.000000 0.000000 0.000000 1.000000"));
-            //Assert.That(_lines[9], Iz.EqualTo("\t\t\t}"));
-            //Assert.That(_lines[10], Iz.EqualTo("\t\t}"));
-            //Assert.That(_lines[11], Iz.EqualTo("\t}"));
+            Assert.That(_lines[0], Iz.EqualTo("\t\t\tMODEL_SHADING_DESCRIPTION_LIST {"));
+            Assert.That(_lines[1], Iz.EqualTo("\t\t\t\tSHADING_DESCRIPTION 0 {"));
+            Assert.That(_lines[2], Iz.EqualTo("\t\t\t\t\tTEXTURE_LAYER_COUNT 1"));
+            Assert.That(_lines[3], Iz.EqualTo("\t\t\t\t\tTEXTURE_COORD_DIMENSION_LIST {"));
+            Assert.That(_lines[4], Iz.EqualTo("\t\t\t\t\t\tTEXTURE_LAYER 0	DIMENSION: 1"));
+            Assert.That(_lines[5], Iz.EqualTo("\t\t\t\t\t}"));
+            Assert.That(_lines[6], Iz.EqualTo("\t\t\t\t\tSHADER_ID 1"));
+            Assert.That(_lines[7], Iz.EqualTo("\t\t\t\t}"));
+            Assert.That(_lines[8], Iz.EqualTo("\t\t\t}"));
+            
 
 
         }
@@ -119,34 +126,65 @@ namespace Duffer.Tests
 
 
             // Create a simple list of ShadingDescription
-            List<ShadingDescription> aList = new List<ShadingDescription>();
+            List<TextureCoordDimension> aList = new List<TextureCoordDimension>();
 
-            var shadingDesc = new ShadingDescription();
-            shadingDesc.ShaderID = 1;
+            var textureCoord = new TextureCoordDimension();
+            textureCoord.TextureLayer = 0;
+            textureCoord.Dimension = 1;
+
+            aList.Add(textureCoord);
 
 
             // write out the list
-            ListExtensions.ExportShadingListToStream(aList, _mockStream.Object);
+            ListExtensions.ExportTextureCoordListToStream(aList, _mockStream.Object);
 
 
             // Check the result
-            Assert.That(_lines.Count, Iz.EqualTo(12));
+            Assert.That(_lines.Count, Iz.EqualTo(3));
 
-            //Assert.That(_lines[0], Iz.EqualTo("\tPARENT_LIST {"));
-            //Assert.That(_lines[1], Iz.EqualTo("\t\tPARENT_COUNT 1"));
-            //Assert.That(_lines[2], Iz.EqualTo("\t\tPARENT 0 {"));
-            //Assert.That(_lines[3], Iz.EqualTo("\t\t\tPARENT_NAME \"<NULL>\""));
-            //Assert.That(_lines[4], Iz.EqualTo("\t\t\tPARENT_TM {"));
-            //Assert.That(_lines[5], Iz.EqualTo("\t\t\t\t1.000000 0.000000 0.000000 0.000000"));
-            //Assert.That(_lines[6], Iz.EqualTo("\t\t\t\t0.000000 1.000000 0.000000 0.000000"));
-            //Assert.That(_lines[7], Iz.EqualTo("\t\t\t\t0.000000 0.000000 1.000000 0.000000"));
-            //Assert.That(_lines[8], Iz.EqualTo("\t\t\t\t0.000000 0.000000 0.000000 1.000000"));
-            //Assert.That(_lines[9], Iz.EqualTo("\t\t\t}"));
-            //Assert.That(_lines[10], Iz.EqualTo("\t\t}"));
-            //Assert.That(_lines[11], Iz.EqualTo("\t}"));
+            Assert.That(_lines[0], Iz.EqualTo("\t\t\t\t\tTEXTURE_COORD_DIMENSION_LIST {"));
+            Assert.That(_lines[1], Iz.EqualTo("\t\t\t\t\t\tTEXTURE_LAYER 0	DIMENSION: 1"));
+            Assert.That(_lines[2], Iz.EqualTo("\t\t\t\t\t}"));
+           
 
 
         }
 
+        [Test]
+        public void should_export_a_texture_coord_list_list_with_two_items()
+        {
+
+
+            // Create a simple list of ShadingDescription
+            List<TextureCoordDimension> aList = new List<TextureCoordDimension>();
+
+            var textureCoord = new TextureCoordDimension();
+            textureCoord.TextureLayer = 0;
+            textureCoord.Dimension = 1;
+
+            aList.Add(textureCoord);
+
+            textureCoord = new TextureCoordDimension();
+            textureCoord.TextureLayer = 1;
+            textureCoord.Dimension = 3;
+
+            aList.Add(textureCoord);
+
+
+            // write out the list
+            ListExtensions.ExportTextureCoordListToStream(aList, _mockStream.Object);
+
+
+            // Check the result
+            Assert.That(_lines.Count, Iz.EqualTo(4));
+
+            Assert.That(_lines[0], Iz.EqualTo("\t\t\t\t\tTEXTURE_COORD_DIMENSION_LIST {"));
+            Assert.That(_lines[1], Iz.EqualTo("\t\t\t\t\t\tTEXTURE_LAYER 0	DIMENSION: 1"));
+            Assert.That(_lines[2], Iz.EqualTo("\t\t\t\t\t\tTEXTURE_LAYER 1	DIMENSION: 3"));
+            Assert.That(_lines[3], Iz.EqualTo("\t\t\t\t\t}"));
+
+
+
+        }
     }
 }
