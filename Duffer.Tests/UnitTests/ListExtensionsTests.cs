@@ -186,5 +186,42 @@ namespace Duffer.Tests
 
 
         }
+
+        [Test]
+        public void should_export_a_texture_coord_list_list_with_two_items_without_checking_indentation()
+        {
+
+
+            // Create a simple list of ShadingDescription
+            List<TextureCoordDimension> aList = new List<TextureCoordDimension>();
+
+            var textureCoord = new TextureCoordDimension();
+            textureCoord.TextureLayer = 0;
+            textureCoord.Dimension = 1;
+
+            aList.Add(textureCoord);
+
+            textureCoord = new TextureCoordDimension();
+            textureCoord.TextureLayer = 1;
+            textureCoord.Dimension = 3;
+
+            aList.Add(textureCoord);
+
+
+            // write out the list
+            ListExtensions.ExportTextureCoordListToStream(aList, _mockStream.Object);
+
+
+            // Check the result
+            Assert.That(_lines.Count, Iz.EqualTo(4));
+
+            Assert.That(_lines[0].Trim(), Iz.EqualTo("TEXTURE_COORD_DIMENSION_LIST {"));
+            Assert.That(_lines[1].Trim(), Iz.EqualTo("TEXTURE_LAYER 0	DIMENSION: 1"));
+            Assert.That(_lines[2].Trim(), Iz.EqualTo("TEXTURE_LAYER 1	DIMENSION: 3"));
+            Assert.That(_lines[3].Trim(), Iz.EqualTo("}"));
+
+
+
+        }
     }
 }
