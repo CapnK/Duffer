@@ -8,6 +8,14 @@ using Duffer.Properties;
 
 namespace Duffer
 {
+    public abstract class Resource
+    {
+        public string Name { get; set; }
+
+        public ResourceListType Type {get; protected set;}               
+
+        public abstract void Export(StreamWriter toStream);
+    }
 
    public class LightResource
    {
@@ -96,9 +104,49 @@ namespace Duffer
 
    }
 
-   public class ShaderResource
+   public class ShaderResource: Resource
    {
+       public string ShaderMaterialName { get; set; }
 
+       private List<TextureLayer> _shaderTextureLayerList;
+       public List<TextureLayer> ShaderTextureLayerList 
+       {
+           get
+           {
+               if (_shaderTextureLayerList == null) _shaderTextureLayerList = new List<TextureLayer>();
+               return _shaderTextureLayerList;
+           }
+           set
+           {
+               _shaderTextureLayerList = value;
+           }
+       }
+
+       public bool? AttributeLightingEnabled { get; set; } //optional
+       public bool? AttributeAlphaTestEnabled { get; set; } //optional
+       public bool? AttributeUseVertexColor { get; set; } //optional
+       public bool? AttributeUseFastSpecular { get; set; } //optional
+       public float? ShaderAlphaTestReference { get; set; } //optional       
+
+       public override void Export(StreamWriter toStream)
+       {
+           toStream.WriteLine(String.Format("\t\tRESOURCE_NAME \"{0}\"", this.Name));
+           
+
+           if (this.AttributeLightingEnabled != null)
+               toStream.WriteLine(String.Format("\t\tATTRIBUTE_LIGHTING_ENABLED \"{0}\"", this.ShaderMaterialName.ToString().ToUpper()));
+           if (this.AttributeAlphaTestEnabled != null)
+               toStream.WriteLine(String.Format("\t\tATTRIBUTE_ALPHA_TEST_ENABLED \"{0}\"", this.AttributeAlphaTestEnabled.ToString().ToUpper()));
+           if (this.AttributeUseVertexColor != null)
+               toStream.WriteLine(String.Format("\t\tATTRIBUTE_USE_VERTEX_COLOR \"{0}\"", this.AttributeUseVertexColor.ToString().ToUpper()));
+           if (this.AttributeUseFastSpecular != null)
+               toStream.WriteLine(String.Format("\t\tATRIBUTE_USE_FAST_SPECULAR \"{0}\"", this.AttributeUseFastSpecular.ToString().ToUpper()));
+           if (this.ShaderAlphaTestReference != null)
+               toStream.WriteLine(String.Format("\t\tSHADER_ALPHA_TEST_REFERENCE \"{0}\"", this.ShaderAlphaTestReference));
+
+           toStream.WriteLine(String.Format("\t\tSHADER_MATERIAL_NAME \"{0}\"", this.ShaderMaterialName));
+           ListExtensions.ExportShaderTextureLayerListToStream(ShaderTextureLayerList, toStream);
+       }
    }
 
    public class MotionResource

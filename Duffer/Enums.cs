@@ -53,4 +53,18 @@ namespace Duffer
       POINT_SET,
       LINE_SET
    }
+
+   public enum TextureLayerBlendFunctionType
+   {
+       ADD,
+       MULTIPLY,
+       REPLACE,
+       BLEND
+   }
+
+   public enum TextureLayerBlendSourceType
+   {
+       ALPHA,
+       CONSTANT
+   }
 }

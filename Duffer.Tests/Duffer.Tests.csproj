@@ -64,6 +64,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\ShaderResources.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShaderResources.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Views.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,6 +82,7 @@
     <Compile Include="Steps\ModelSteps.cs" />
     <Compile Include="Steps\ParentSteps.cs" />
     <Compile Include="Steps\SceneSteps.cs" />
+    <Compile Include="Steps\ShaderResourceSteps.cs" />
     <Compile Include="Steps\ViewSteps.cs" />
     <Compile Include="UnitTests\BasicTypesTests.cs" />
     <Compile Include="UnitTests\ExtensionMethodTests.cs" />
@@ -99,6 +105,10 @@
     <None Include="Features\Models.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Models.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\ShaderResources.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ShaderResources.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Views.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

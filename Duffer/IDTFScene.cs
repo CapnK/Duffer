@@ -27,7 +27,6 @@ namespace Duffer
          set { _views = value; }
       }
 
-
       private List<Model> _models;
       /// <summary>
       /// A list of the Model nodes in this scene
@@ -127,8 +126,6 @@ namespace Duffer
          set { _motionResources = value; }
       }
 
-
-
       public bool Export(string toFile)
       {
          // The IDTF file contains the following text blocks written in this order
@@ -171,6 +168,22 @@ namespace Duffer
                m.WriteOutput(output);
             }
             
+            //<RESOURCELISTS> - Shader
+            if (this.ShaderResources.Count() > 0)
+            {
+                output.WriteLine("RESOURCE_LIST \"SHADER\" {");
+                output.WriteLine("\tRESOURCE_COUNT {0}", this.ShaderResources.Count().ToString());
+
+                for (int i = 0; i < this.ShaderResources.Count(); i++)
+                {
+                    output.WriteLine("\tRESOURCE {0} {{", i.ToString());
+                    this.ShaderResources.ElementAt(i).Value.Export(output);
+                    output.WriteLine("\t}");
+                }
+                output.WriteLine("}");
+                output.WriteLine();
+            }
+
             output.Flush();
             output.Close();
          }

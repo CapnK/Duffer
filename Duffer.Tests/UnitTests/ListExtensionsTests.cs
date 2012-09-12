@@ -8,7 +8,7 @@ using NUnit.Framework;
 using System.IO;
 using Moq;
 
-namespace Duffer.Tests
+namespace Duffer.Tests.UnitTests
 {
     [TestFixture]
     class ListExtensionsTests

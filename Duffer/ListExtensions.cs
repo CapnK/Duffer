@@ -54,5 +54,23 @@ namespace Duffer
 
             toStream.WriteLine("\t\t\t\t\t}");
         }
+
+
+        internal static void ExportShaderTextureLayerListToStream(IList<TextureLayer> list, StreamWriter toStream)
+        {
+            toStream.WriteLine("\t\tSHADER_ACTIVE_TEXTURE_COUNT {0}", list.Count.ToString());
+            if (list.Count() > 0)
+            {
+                toStream.WriteLine("\t\tSHADER_TEXTURE_LAYER_LIST {");
+                for (int i = 0; i < list.Count; i++)
+                {
+                    toStream.WriteLine("\t\t\tTEXTURE_LAYER {0} {{", i.ToString());
+                    list.ElementAt(i).Export(toStream);
+                    toStream.WriteLine("\t\t\t}");
+                }
+
+                toStream.WriteLine("\t\t}");
+            }
+        }
     }
 }

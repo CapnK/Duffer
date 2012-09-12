@@ -45,6 +45,7 @@
     <Compile Include="BasicTypes.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="IDTFModifiers.cs" />
     <Compile Include="IDTFScene.cs" />
     <Compile Include="IDTFNodes.cs" />
     <Compile Include="IDTFResources.cs" />
@@ -57,6 +58,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ShadingDescription.cs" />
+    <Compile Include="TextureLayer.cs" />
     <Compile Include="Transform4x4.cs" />
   </ItemGroup>
   <ItemGroup>
