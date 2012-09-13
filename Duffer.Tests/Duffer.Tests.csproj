@@ -59,6 +59,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BasicFile.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\LightResources.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LightResources.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\MaterialResources.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +94,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\FileSteps.cs" />
     <Compile Include="Steps\GroupSteps.cs" />
+    <Compile Include="Steps\LightResourceSteps.cs" />
     <Compile Include="Steps\MaterialResourceSteps.cs" />
     <Compile Include="Steps\ModelSteps.cs" />
     <Compile Include="Steps\ParentSteps.cs" />
@@ -113,6 +119,10 @@
     <None Include="Features\BasicFile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BasicFile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\LightResources.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LightResources.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\MaterialResources.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

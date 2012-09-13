@@ -27,8 +27,8 @@ namespace Duffer.Tests.Steps
         public void GivenTheResourcePropertiesForAmbientMaterialAreAnd(string materialName, double p1, double p2, double p3)
         {           
             int r = (p1 == 1.0) ? 255 : (int) (p1 * 256);
-            int g = (p1 == 1.0) ? 255 : (int)(p1 * 256);
-            int b = (p1 == 1.0) ? 255 : (int)(p1 * 256);
+            int g = (p2 == 1.0) ? 255 : (int)(p2 * 256);
+            int b = (p3 == 1.0) ? 255 : (int)(p3 * 256);
 
             MaterialResource m1 = ScenarioContext.Current.Get<MaterialResource>(materialName);
             m1.MaterialAmbient = Color.FromArgb(r, g, b);
@@ -38,8 +38,8 @@ namespace Duffer.Tests.Steps
         public void GivenTheResourcePropertiesForDiffuseMaterialAreAnd(string materialName, double p1, double p2, double p3)
         {
             int r = (p1 == 1.0) ? 255 : (int)(p1 * 256);
-            int g = (p1 == 1.0) ? 255 : (int)(p1 * 256);
-            int b = (p1 == 1.0) ? 255 : (int)(p1 * 256);
+            int g = (p2 == 1.0) ? 255 : (int)(p2 * 256);
+            int b = (p3 == 1.0) ? 255 : (int)(p3 * 256);
 
             MaterialResource m1 = ScenarioContext.Current.Get<MaterialResource>(materialName);
             m1.MaterialDiffuse = Color.FromArgb(r, g, b);

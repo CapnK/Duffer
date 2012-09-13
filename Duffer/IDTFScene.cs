@@ -191,7 +191,24 @@ namespace Duffer
             {
                m.WriteOutput(output);
             }
-            
+
+
+            //<RESOURCE_LISTS> - Light   
+            if (this.LightResources.Count() > 0)
+            {
+                output.WriteLine("RESOURCE_LIST \"LIGHT\" {");
+                output.WriteLine("\tRESOURCE_COUNT {0}", this.LightResources.Count().ToString());
+
+                for (int i = 0; i < this.LightResources.Count(); i++)
+                {
+                    output.WriteLine("\tRESOURCE {0} {{", i.ToString());
+                    this.LightResources.ElementAt(i).Value.Export(output);
+                    output.WriteLine("\t}");
+                }
+                output.WriteLine("}");
+                output.WriteLine();
+            }
+
             //<RESOURCE_LISTS> - Shader   
             if (this.ShaderResources.Count() > 0)
             {

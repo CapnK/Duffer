@@ -27,74 +27,60 @@ namespace Duffer
    public abstract class Resource
     {
         public string Name { get; set; }
-
-        public abstract ResourceListType Type {get; }               
-
+        public abstract ResourceListType ResourceType {get; } 
         public abstract void Export(StreamWriter toStream);
     }
 
-   public class LightResource
-   {
-      public LightResource(string name)
-      {
-         this.Name = name;
-      }
-
-      public string Name { get; set; }
-
-      /// <summary>
-      /// The Light Type
-      /// </summary>
+   public class LightResource: Resource
+   {   
       public LightType Type { get; set; }
-
-      /// <summary>
-      /// Light color
-      /// </summary>
       public Color Color { get; set; }
-
-      public Vector4 Attenuation { get; set; }
-
-      /// <summary>
-      /// Applies to Spot lights only, Radians or Deg? Measured from where?
-      /// </summary>
-      public float SpotAngle { get; set; }
-
-
+      public Point3 Attenuation { get; set; }
+      public float? SpotAngle { get; set; } // Optional - Applies to Spot lights only, Radians or Deg? Measured from where?
       public float Intensity { get; set; }
 
-      internal void Export(StreamWriter toStream)
+      public override void Export(StreamWriter toStream)
       {
          toStream.WriteLine(String.Format("\t\tRESOURCE_NAME \"{0}\"", this.Name));
          toStream.WriteLine(String.Format("\t\tLIGHT_TYPE \"{0}\"", this.Type.ToString()));
-         toStream.WriteLine(String.Format("\t\tLIGHT_COLOR \"{0}\"", this.Color.ToIDTFStringRGBA()));
-         toStream.WriteLine(String.Format("\t\tLIGHT_ATTENUATION \"{0}\"", this.Attenuation.ToString()));
-         toStream.WriteLine(String.Format("\t\tLIGHT_SPOT_ANGLE \"{0}\"", this.SpotAngle.ToString(Resources.SixDecPlFormat)));
-         toStream.WriteLine(String.Format("\t\tLIGHT_INTENSITY \"{0}\"", this.Intensity.ToString(Resources.SixDecPlFormat)));
+         toStream.WriteLine(String.Format("\t\tLIGHT_COLOR {0}", this.Color.ToIDTFStringRGB()));
+         toStream.WriteLine(String.Format("\t\tLIGHT_ATTENUATION {0}", this.Attenuation.ToString()));
+         if (this.SpotAngle != null)
+             toStream.WriteLine(String.Format("\t\tLIGHT_SPOT_ANGLE \"{0}\"", ((float)this.SpotAngle).ToString(Resources.SixDecPlFormat)));
+         toStream.WriteLine(String.Format("\t\tLIGHT_INTENSITY {0}", this.Intensity.ToString(Resources.SixDecPlFormat)));
       }
+
+      public override ResourceListType ResourceType
+      {
+          get { return ResourceListType.LIGHT; }
+      }
+   }
+   public class ViewResource: Resource
+   {
+       
+
+       public override void Export(StreamWriter toStream)
+       {
+           
+       }
+
+       public override ResourceListType ResourceType
+       {
+           get { return ResourceListType.VIEW; }
+       }
+   }
+   public class ModelResource: Resource
+   {
+       public override void Export(StreamWriter toStream)
+       {
+
+       }
+
+       public override ResourceListType ResourceType
+       {
+           get { return ResourceListType.MODEL; }
+       }
    } 
-   
-   public class ModelResource
-   {
-      public ModelResource(string name)
-      {
-         this.Name = name;
-      }
-
-      public string Name { get; set; }
-
-   }
-
-   public class ViewResource
-   {
-      public ViewResource(string name)
-      {
-         this.Name = name;
-      }
-
-      public string Name { get; set; }
-
-
-   }
 
    public class ShaderResource: Resource
    {
@@ -139,7 +125,7 @@ namespace Duffer
            ListExtensions.ExportShaderTextureLayerListToStream(ShaderTextureLayerList, toStream);
        }
 
-       public override ResourceListType Type
+       public override ResourceListType ResourceType
        {
            get { return ResourceListType.SHADER; }
        }
@@ -184,7 +170,7 @@ namespace Duffer
            toStream.WriteLine(String.Format("\t\tMATERIAL_OPACITY {0}", this.MaterialOpacity.ToString(Resources.SixDecPlFormat)));
        }
 
-       public override ResourceListType Type
+       public override ResourceListType ResourceType
        {
            get { return ResourceListType.MATERIAL; }
        }
@@ -227,13 +213,12 @@ namespace Duffer
            toStream.WriteLine(String.Format("\t\tTEXTURE_PATH \"{0}\"", this.TexturePath));
        }
 
-       public override ResourceListType Type
+       public override ResourceListType ResourceType
        {
            get { return ResourceListType.TEXTURE; }
        }
    }
-
-
+    
    public class MotionResource
    {
 

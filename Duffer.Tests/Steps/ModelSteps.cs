@@ -42,7 +42,8 @@ namespace Duffer.Tests.Steps
       {
          Model m1 = ScenarioContext.Current.Get<Model>(modelName);
 
-         ModelResource r1 = new ModelResource(resourceName);
+         ModelResource r1 = new ModelResource();
+         r1.Name = resourceName;
 
          m1.Resource = r1;
 
