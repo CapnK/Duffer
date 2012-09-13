@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using System.Drawing;
 using Duffer.Properties;
 
 namespace Duffer
@@ -34,7 +34,7 @@ namespace Duffer
       /// <summary>
       /// Light color
       /// </summary>
-      public System.Drawing.Color Color { get; set; }
+      public Color Color { get; set; }
 
       public Vector4 Attenuation { get; set; }
 
@@ -50,37 +50,13 @@ namespace Duffer
       {
          toStream.WriteLine(String.Format("\t\tRESOURCE_NAME \"{0}\"", this.Name));
          toStream.WriteLine(String.Format("\t\tLIGHT_TYPE \"{0}\"", this.Type.ToString()));
-         toStream.WriteLine(String.Format("\t\tLIGHT_COLOR \"{0}\"", this.Color.ToIDTFString()));
+         toStream.WriteLine(String.Format("\t\tLIGHT_COLOR \"{0}\"", this.Color.ToIDTFStringRGBA()));
          toStream.WriteLine(String.Format("\t\tLIGHT_ATTENUATION \"{0}\"", this.Attenuation.ToString()));
          toStream.WriteLine(String.Format("\t\tLIGHT_SPOT_ANGLE \"{0}\"", this.SpotAngle.ToString(Resources.SixDecPlFormat)));
          toStream.WriteLine(String.Format("\t\tLIGHT_INTENSITY \"{0}\"", this.Intensity.ToString(Resources.SixDecPlFormat)));
-
       }
-   }
-
-   public enum LightType
-   {
-      /// <summary>
-      /// Light provides uniform non-directional light to the scene
-      /// </summary>
-      AMBIENT,
-
-      /// <summary>
-      /// Light provides uniform directional light to the scene
-      /// </summary>
-      DIRECTIONAL,
-      
-      /// <summary>
-      /// Light is emitted from a specific point in the scene
-      /// </summary>
-      POINT,
-
-      /// <summary>
-      /// Like point light, but constrained to specific directions
-      /// </summary>
-      SPOT
-   }
-
+   } 
+   
    public class ModelResource
    {
       public ModelResource(string name)
@@ -130,8 +106,7 @@ namespace Duffer
 
        public override void Export(StreamWriter toStream)
        {
-           toStream.WriteLine(String.Format("\t\tRESOURCE_NAME \"{0}\"", this.Name));
-           
+           toStream.WriteLine(String.Format("\t\tRESOURCE_NAME \"{0}\"", this.Name));           
 
            if (this.AttributeLightingEnabled != null)
                toStream.WriteLine(String.Format("\t\tATTRIBUTE_LIGHTING_ENABLED \"{0}\"", this.ShaderMaterialName.ToString().ToUpper()));
@@ -146,6 +121,46 @@ namespace Duffer
 
            toStream.WriteLine(String.Format("\t\tSHADER_MATERIAL_NAME \"{0}\"", this.ShaderMaterialName));
            ListExtensions.ExportShaderTextureLayerListToStream(ShaderTextureLayerList, toStream);
+       }
+   }
+   public class MaterialResource : Resource
+   {
+       public bool? AttributeAmbientEnabled { get; set; } //optional
+       public bool? AttributeDiffuseEnabled { get; set; } //optional
+       public bool? AttributeSpecularEnabled { get; set; } //optional
+       public bool? AttributeEmmisiveEnabled { get; set; } //optional
+       public bool? AttributeReflectivityEnabled { get; set; } //optional
+       public bool? AttributeOpacityEnabled { get; set; } //optional
+
+       public Color MaterialAmbient { get; set; }
+       public Color MaterialDiffuse { get; set; }
+       public Color MaterialSpecular { get; set; }
+       public Color MaterialEmmisive { get; set; }
+       public float MaterialReflectivity { get; set; }
+       public float MaterialOpacity { get; set; }
+
+       public override void Export(StreamWriter toStream)
+       {
+           if (this.AttributeAmbientEnabled != null)
+               toStream.WriteLine(String.Format("\t\tATTRIBUTE_AMBIENT_ENABLED \"{0}\"", this.AttributeAmbientEnabled.ToString().ToUpper()));
+           if (this.AttributeDiffuseEnabled != null)
+               toStream.WriteLine(String.Format("\t\tATTRIBUTE_DIFFUSE_ENABLED \"{0}\"", this.AttributeDiffuseEnabled.ToString().ToUpper()));
+           if (this.AttributeSpecularEnabled != null)
+               toStream.WriteLine(String.Format("\t\tATTRIBUTE_SPECULAR_ENABLED \"{0}\"", this.AttributeSpecularEnabled.ToString().ToUpper()));
+           if (this.AttributeEmmisiveEnabled != null)
+               toStream.WriteLine(String.Format("\t\tATTRIBUTE_EMISSIVE_ENABLED \"{0}\"", this.AttributeEmmisiveEnabled.ToString().ToUpper()));
+           if (this.AttributeReflectivityEnabled != null)
+               toStream.WriteLine(String.Format("\t\tATTRIBUTE_REFLECTIVITY_ENABLED \"{0}\"", this.AttributeReflectivityEnabled.ToString().ToUpper()));
+           if (this.AttributeOpacityEnabled != null)
+               toStream.WriteLine(String.Format("\t\tATTRIBUTE_OPACITY_ENABLED \"{0}\"", this.AttributeOpacityEnabled.ToString().ToUpper()));
+
+           toStream.WriteLine(String.Format("\t\tRESOURCE_NAME \"{0}\"", this.Name));
+           toStream.WriteLine(String.Format("\t\tMATERIAL_AMBIENT {0}", this.MaterialAmbient.ToIDTFStringRGB()));
+           toStream.WriteLine(String.Format("\t\tMATERIAL_DIFFUSE {0}", this.MaterialDiffuse.ToIDTFStringRGB()));
+           toStream.WriteLine(String.Format("\t\tMATERIAL_SPECULAR {0}", this.MaterialSpecular.ToIDTFStringRGB()));
+           toStream.WriteLine(String.Format("\t\tMATERIAL_EMISSIVE {0}", this.MaterialEmmisive.ToIDTFStringRGB()));
+           toStream.WriteLine(String.Format("\t\tMATERIAL_REFLECTIVITY {0}", this.MaterialReflectivity.ToString(Resources.SixDecPlFormat)));
+           toStream.WriteLine(String.Format("\t\tMATERIAL_OPACITY {0}", this.MaterialOpacity.ToString(Resources.SixDecPlFormat)));
        }
    }
 

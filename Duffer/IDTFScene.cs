@@ -115,6 +115,17 @@ namespace Duffer
          set { _shaderResources = value; }
       }
 
+      private Dictionary<string, MaterialResource> _materialResources;
+      public Dictionary<string, MaterialResource> MaterialResources
+      {
+          get
+          {
+              if (_materialResources == null) { _materialResources = new Dictionary<string, MaterialResource>(); }
+              return _materialResources;
+          }
+          set { _materialResources = value; }
+      }
+
       private Dictionary<string, MotionResource> _motionResources;
       public Dictionary<string, MotionResource> MotionResources
       {
@@ -135,6 +146,7 @@ namespace Duffer
          //<NODES>
          //<NODE_RESOURCES>
          //<SHADER_RESOURCES>
+         //<MATERIAL_RESOURCES>
          //<MOTION_RESOURCES>
          //<MODIFIERS>
 
@@ -168,7 +180,7 @@ namespace Duffer
                m.WriteOutput(output);
             }
             
-            //<RESOURCELISTS> - Shader
+            //<RESOURCE_LISTS> - Shader   
             if (this.ShaderResources.Count() > 0)
             {
                 output.WriteLine("RESOURCE_LIST \"SHADER\" {");
@@ -184,11 +196,32 @@ namespace Duffer
                 output.WriteLine();
             }
 
+            //<RESOURCE_LISTS> - Material
+            if (this.MaterialResources.Count() > 0)
+            {
+                output.WriteLine("RESOURCE_LIST \"MATERIAL\" {");
+                output.WriteLine("\tRESOURCE_COUNT {0}", this.MaterialResources.Count().ToString());
+
+                for (int i = 0; i < this.MaterialResources.Count(); i++)
+                {
+                    output.WriteLine("\tRESOURCE {0} {{", i.ToString());
+                    this.MaterialResources.ElementAt(i).Value.Export(output);
+                    output.WriteLine("\t}");
+                }
+                output.WriteLine("}");
+                output.WriteLine();
+            }
+
             output.Flush();
             output.Close();
          }
          
          return false;
+      }
+
+      public void ExportResourceList(StreamWriter toStream, string resourceName, List<Resource> resourceList)
+      {
+          
       }
    }
 }

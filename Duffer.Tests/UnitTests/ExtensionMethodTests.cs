@@ -18,7 +18,7 @@ namespace Duffer.Tests.UnitTests
       [Test]
       public void should_output_black_in_ITDF_Format()
       {
-         string blackString = System.Drawing.Color.Black.ToIDTFString();
+         string blackString = System.Drawing.Color.Black.ToIDTFStringRGBA();
 
          Assert.That(blackString, Iz.EqualTo("0.000000 0.000000 0.000000 1.000000"));
       }
@@ -26,7 +26,7 @@ namespace Duffer.Tests.UnitTests
       [Test]
       public void should_output_white_in_ITDF_Format()
       {
-         string colorString = System.Drawing.Color.White.ToIDTFString();
+         string colorString = System.Drawing.Color.White.ToIDTFStringRGBA();
 
          Assert.That(colorString, Iz.EqualTo("1.000000 1.000000 1.000000 1.000000"));
       }
@@ -34,7 +34,7 @@ namespace Duffer.Tests.UnitTests
       [Test]
       public void should_output_50percentgrey_in_ITDF_Format()
       {
-         string colorString = System.Drawing.Color.Gray.ToIDTFString();
+         string colorString = System.Drawing.Color.Gray.ToIDTFStringRGBA();
 
          Assert.That(colorString, Iz.EqualTo("0.500000 0.500000 0.500000 1.000000"));
       }
@@ -44,7 +44,7 @@ namespace Duffer.Tests.UnitTests
       {
          System.Drawing.Color alphaRed = System.Drawing.Color.FromArgb(128, 255, 0, 0);
 
-         string colorString = alphaRed.ToIDTFString();
+         string colorString = alphaRed.ToIDTFStringRGBA();
 
          Assert.That(colorString, Iz.EqualTo("1.000000 0.000000 0.000000 0.500000"));
       }

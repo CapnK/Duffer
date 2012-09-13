@@ -33,7 +33,6 @@ namespace Duffer
       BOTH
    }
 
-
    public enum ViewType
    {
       PERSPECTIVE,
@@ -46,12 +45,34 @@ namespace Duffer
       PERCENTAGE
    }
 
-
    public enum ModelType
    {
       MESH,
       POINT_SET,
       LINE_SET
+   }
+
+   public enum LightType
+   {
+       /// <summary>
+       /// Light provides uniform non-directional light to the scene
+       /// </summary>
+       AMBIENT,
+
+       /// <summary>
+       /// Light provides uniform directional light to the scene
+       /// </summary>
+       DIRECTIONAL,
+
+       /// <summary>
+       /// Light is emitted from a specific point in the scene
+       /// </summary>
+       POINT,
+
+       /// <summary>
+       /// Like point light, but constrained to specific directions
+       /// </summary>
+       SPOT
    }
 
    public enum TextureLayerBlendFunctionType
