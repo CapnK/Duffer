@@ -71,11 +71,33 @@ namespace Duffer
    }
    public class ModelResource: Resource
    {
+       public ModelType Type { get; set; }
+
+       public MeshData Mesh { get; set; }
+       public LineSetData LineSet { get; set; }
+       public PointSetData PointSet {get; set;}
+
        public override void Export(StreamWriter toStream)
        {
+           toStream.WriteLine(String.Format("\t\tRESOURCE_NAME \"{0}\"", this.Name));
+           toStream.WriteLine(String.Format("\t\tMODEL_TYPE \"{0}\"", this.Type.ToString()));
 
+           switch (Type)
+           {
+               case ModelType.MESH:
+                   if (Mesh != null)
+                       Mesh.Export(toStream);
+                   break;
+               case ModelType.LINE_SET:
+                   if (PointSet != null)
+                       PointSet.Export(toStream);
+                   break;
+               case ModelType.POINT_SET:
+                   if (PointSet != null)
+                       PointSet.Export(toStream);
+                   break;
+           }
        }
-
        public override ResourceListType ResourceType
        {
            get { return ResourceListType.MODEL; }

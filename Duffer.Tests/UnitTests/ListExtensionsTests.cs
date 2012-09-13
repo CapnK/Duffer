@@ -88,13 +88,14 @@ namespace Duffer.Tests.UnitTests
 
             var shadingDesc = new ShadingDescription();
             shadingDesc.ShaderID = 1;
-            shadingDesc.TextureLayerCount = 1;
+           // shadingDesc.TextureLayerCount = 1;
 
-            var textureCoords = new TextureCoordDimension();
-            textureCoords.TextureLayer = 0;
-            textureCoords.Dimension = 1;
+        //    var textureCoords = new TextureCoordDimension();
+          //  textureCoords.TextureLayer = 0;
+          //  textureCoords.Dimension = 1;
 
-            shadingDesc.TextureCoordDimensionList.Add(textureCoords);
+            shadingDesc.TextureCoordDimensionList.Add(1);
+           // shadingDesc.TextureCoordDimensionList.Add(textureCoords);
 
             aList.Add(shadingDesc);
 
@@ -126,13 +127,13 @@ namespace Duffer.Tests.UnitTests
 
 
             // Create a simple list of ShadingDescription
-            List<TextureCoordDimension> aList = new List<TextureCoordDimension>();
+            //List<TextureCoordDimension> aList = new List<TextureCoordDimension>();
 
-            var textureCoord = new TextureCoordDimension();
-            textureCoord.TextureLayer = 0;
-            textureCoord.Dimension = 1;
-
-            aList.Add(textureCoord);
+            //var textureCoord = new TextureCoordDimension();
+            //textureCoord.TextureLayer = 0;
+            //textureCoord.Dimension = 1;
+            List<int> aList = new List<int>();
+            aList.Add(1);
 
 
             // write out the list
@@ -156,20 +157,24 @@ namespace Duffer.Tests.UnitTests
 
 
             // Create a simple list of ShadingDescription
-            List<TextureCoordDimension> aList = new List<TextureCoordDimension>();
+            //List<TextureCoordDimension> aList = new List<TextureCoordDimension>();
 
-            var textureCoord = new TextureCoordDimension();
-            textureCoord.TextureLayer = 0;
-            textureCoord.Dimension = 1;
+            //var textureCoord = new TextureCoordDimension();
+            //textureCoord.TextureLayer = 0;
+            //textureCoord.Dimension = 1;
 
-            aList.Add(textureCoord);
+            //aList.Add(textureCoord);
 
-            textureCoord = new TextureCoordDimension();
-            textureCoord.TextureLayer = 1;
-            textureCoord.Dimension = 3;
+            //textureCoord = new TextureCoordDimension();
+            //textureCoord.TextureLayer = 1;
+            //textureCoord.Dimension = 3;
 
-            aList.Add(textureCoord);
+            //aList.Add(textureCoord);
 
+
+            var aList = new List<int>();
+            aList.Add(1);
+            aList.Add(3);
 
             // write out the list
             ListExtensions.ExportTextureCoordListToStream(aList, _mockStream.Object);
@@ -193,20 +198,22 @@ namespace Duffer.Tests.UnitTests
 
 
             // Create a simple list of ShadingDescription
-            List<TextureCoordDimension> aList = new List<TextureCoordDimension>();
+            //List<TextureCoordDimension> aList = new List<TextureCoordDimension>();
 
-            var textureCoord = new TextureCoordDimension();
-            textureCoord.TextureLayer = 0;
-            textureCoord.Dimension = 1;
+            //var textureCoord = new TextureCoordDimension();
+            //textureCoord.TextureLayer = 0;
+            //textureCoord.Dimension = 1;
 
-            aList.Add(textureCoord);
+            //aList.Add(textureCoord);
 
-            textureCoord = new TextureCoordDimension();
-            textureCoord.TextureLayer = 1;
-            textureCoord.Dimension = 3;
+            //textureCoord = new TextureCoordDimension();
+            //textureCoord.TextureLayer = 1;
+            //textureCoord.Dimension = 3;
+            //aList.Add(textureCoord);
 
-            aList.Add(textureCoord);
-
+            var aList = new List<int>();
+            aList.Add(1);
+            aList.Add(3);     
 
             // write out the list
             ListExtensions.ExportTextureCoordListToStream(aList, _mockStream.Object);

@@ -69,6 +69,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MaterialResources.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\ModelResources.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelResources.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Models.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,6 +101,7 @@
     <Compile Include="Steps\GroupSteps.cs" />
     <Compile Include="Steps\LightResourceSteps.cs" />
     <Compile Include="Steps\MaterialResourceSteps.cs" />
+    <Compile Include="Steps\ModelResourceSteps.cs" />
     <Compile Include="Steps\ModelSteps.cs" />
     <Compile Include="Steps\ParentSteps.cs" />
     <Compile Include="Steps\SceneSteps.cs" />
@@ -127,6 +133,10 @@
     <None Include="Features\MaterialResources.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>MaterialResources.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\ModelResources.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ModelResources.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Models.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

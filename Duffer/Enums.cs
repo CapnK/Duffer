@@ -47,6 +47,7 @@ namespace Duffer
       PERCENTAGE
    }
 
+   /* Types for the "MODEL RESOURCE_LIST" */ 
    public enum ModelType
    {
       MESH,

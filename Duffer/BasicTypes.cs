@@ -54,9 +54,24 @@ namespace Duffer
       }
    }
 
+   public class Int3
+   {       
+       public Int3(int i0, int i1, int i2)
+       {
+           IntArray = new int[3];
+           IntArray[0] = i0;
+           IntArray[1] = i1;
+           IntArray[2] = i2;
+       }
 
+       public int[] IntArray { get; private set; }
 
-   
-
-
+       public override string ToString()
+       {
+           return String.Format("{0} {1} {2}",
+               this.IntArray[0].ToString(),
+               this.IntArray[1].ToString(),
+               this.IntArray[2].ToString());
+       }
+   }
 }
