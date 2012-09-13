@@ -8,11 +8,27 @@ using Duffer.Properties;
 
 namespace Duffer
 {
-    public abstract class Resource
+   /* Resource lists
+    * Possible Resource_List types: View, Light, Model, Shader, Material, Texture, Motion
+    * A IDTF file can only have one list of each type and has the following format:
+    * RESOURCE_LIST <RESOURCE_TYPE> {
+    *   RESOURCE_COUNT <int>
+    *   RESOURCE 0 {
+    *       RESOURCE_NAME <string>
+    *       <RESOURCE_DATA>
+    *       <META_DATA>
+    *   }
+    *       etc.
+    * }
+    * 
+    * This file contains the Resource data for each of the resource list types.
+    */
+
+   public abstract class Resource
     {
         public string Name { get; set; }
 
-        public ResourceListType Type {get; protected set;}               
+        public abstract ResourceListType Type {get; }               
 
         public abstract void Export(StreamWriter toStream);
     }
@@ -122,8 +138,13 @@ namespace Duffer
            toStream.WriteLine(String.Format("\t\tSHADER_MATERIAL_NAME \"{0}\"", this.ShaderMaterialName));
            ListExtensions.ExportShaderTextureLayerListToStream(ShaderTextureLayerList, toStream);
        }
+
+       public override ResourceListType Type
+       {
+           get { return ResourceListType.SHADER; }
+       }
    }
-   public class MaterialResource : Resource
+   public class MaterialResource: Resource
    {
        public bool? AttributeAmbientEnabled { get; set; } //optional
        public bool? AttributeDiffuseEnabled { get; set; } //optional
@@ -162,7 +183,56 @@ namespace Duffer
            toStream.WriteLine(String.Format("\t\tMATERIAL_REFLECTIVITY {0}", this.MaterialReflectivity.ToString(Resources.SixDecPlFormat)));
            toStream.WriteLine(String.Format("\t\tMATERIAL_OPACITY {0}", this.MaterialOpacity.ToString(Resources.SixDecPlFormat)));
        }
+
+       public override ResourceListType Type
+       {
+           get { return ResourceListType.MATERIAL; }
+       }
    }
+   public class TextureResource : Resource
+   {
+       public int? IdtfTextureHeight { get; set; } //optional
+       public int? IdtfTextureWidth { get; set; } //optional
+       public TextureImageType? ImageType { get; set; } //optional
+
+       private List<TextureImageFormat> _texureImageFormatList; //optional
+       public List<TextureImageFormat> TexureImageFormatList
+       {
+           get
+           {
+               if (_texureImageFormatList == null) _texureImageFormatList = new List<TextureImageFormat>();
+               return _texureImageFormatList;
+           }
+           set
+           {
+               _texureImageFormatList = value;
+           }
+       } //optional
+
+       public string TexturePath { get; set; }
+
+       public override void Export(StreamWriter toStream)
+       {
+           toStream.WriteLine(String.Format("\t\tRESOURCE_NAME \"{0}\"", this.Name));
+
+           if (this.IdtfTextureHeight != null)
+               toStream.WriteLine(String.Format("\t\tIDTF_TEXTURE_HEIGHT \"{0}\"", this.IdtfTextureHeight.ToString()));
+           if (this.IdtfTextureWidth != null)
+               toStream.WriteLine(String.Format("\t\tIDTF_TEXTURE_WIDTH \"{0}\"", this.IdtfTextureWidth.ToString()));
+           if (this.ImageType != null)
+               toStream.WriteLine(String.Format("\t\tTEXTURE_IMAGE_TYPE \"{0}\"", this.ImageType.ToString()));
+
+           ListExtensions.ExportTextureImageFormatListToStream(this.TexureImageFormatList, toStream);
+           
+           toStream.WriteLine(String.Format("\t\tTEXTURE_PATH \"{0}\"", this.TexturePath));
+       }
+
+       public override ResourceListType Type
+       {
+           get { return ResourceListType.TEXTURE; }
+       }
+   }
+
 
    public class MotionResource
    {

@@ -57,8 +57,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ShadingDescription.cs" />
-    <Compile Include="TextureLayer.cs" />
+    <Compile Include="ResourceDataDescriptions.cs" />
     <Compile Include="Transform4x4.cs" />
   </ItemGroup>
   <ItemGroup>

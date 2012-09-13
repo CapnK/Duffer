@@ -19,6 +19,8 @@ namespace Duffer
       VIEW,
       LIGHT,
       SHADER,
+      MATERIAL,
+      TEXTURE,
       MOTION
    }
 
@@ -52,6 +54,7 @@ namespace Duffer
       LINE_SET
    }
 
+   /* Types for the "LIGHT RESOURCE_LIST" */  
    public enum LightType
    {
        /// <summary>
@@ -75,6 +78,7 @@ namespace Duffer
        SPOT
    }
 
+   /* Types for the "SHADER RESOURCE_LIST" */ 
    public enum TextureLayerBlendFunctionType
    {
        ADD,
@@ -82,10 +86,25 @@ namespace Duffer
        REPLACE,
        BLEND
    }
-
    public enum TextureLayerBlendSourceType
    {
        ALPHA,
        CONSTANT
+   }
+
+   /* Types for the "TEXTURE RESOURCE_LIST" */
+   public enum TextureImageType
+   {
+       ALPHA,
+       RGB,
+       RGBA,
+       LUMINANCE,
+       LUMINANCE_AND_ALPHA
+   }
+   public enum CompressionType
+   {
+       JPEG24,
+       JPEG8,
+       PNG
    }
 }

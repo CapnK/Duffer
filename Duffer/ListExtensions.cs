@@ -27,7 +27,7 @@ namespace Duffer
             toStream.WriteLine("\t}");
         }
 
-
+        /* For "MODEL RESOURCE_LIST*/
         internal static void ExportShadingListToStream(IList<ShadingDescription> list, StreamWriter toStream)
         {
             toStream.WriteLine("\t\t\tMODEL_SHADING_DESCRIPTION_LIST {");
@@ -55,7 +55,7 @@ namespace Duffer
             toStream.WriteLine("\t\t\t\t\t}");
         }
 
-
+        /* For "SHADER RESOURCE_LIST*/
         internal static void ExportShaderTextureLayerListToStream(IList<TextureLayer> list, StreamWriter toStream)
         {
             toStream.WriteLine("\t\tSHADER_ACTIVE_TEXTURE_COUNT {0}", list.Count.ToString());
@@ -70,6 +70,43 @@ namespace Duffer
                 }
 
                 toStream.WriteLine("\t\t}");
+            }
+        }
+
+        /* For "TEXTURE RESOURCE_LIST*/
+        internal static void ExportTextureImageFormatListToStream(IList<TextureImageFormat> list, StreamWriter toStream)
+        {
+            if (list.Count == 0) return;
+
+            toStream.WriteLine("\t\tTEXTURE_IMAGE_COUNT {0}", list.Count.ToString());
+            if (list.Count() > 0)
+            {
+                toStream.WriteLine("\t\tIMAGE_FORMAT_LIST {");
+                for (int i = 0; i < list.Count; i++)
+                {
+                    toStream.WriteLine("\t\t\tIMAGE_FORMAT {0} {{", i.ToString());
+                    list.ElementAt(i).Export(toStream);
+                    toStream.WriteLine("\t\t\t}");
+                }
+
+                toStream.WriteLine("\t\t}");
+            }
+        }
+
+        internal static void ExportUrlListToStream(IList<Url> list, StreamWriter toStream)
+        {
+            if (list.Count == 0) return;
+
+            toStream.WriteLine("\t\t\tURL_COUNT {0}", list.Count.ToString());
+            if (list.Count() > 0)
+            {
+                toStream.WriteLine("\t\t\t\tURL_LIST {");
+                for (int i = 0; i < list.Count; i++)
+                {
+                    toStream.WriteLine("\t\t\t\tURL {0} {1}", i.ToString(), list[i].UrlPath);
+                }
+
+                toStream.WriteLine("\t\t\t}");
             }
         }
     }

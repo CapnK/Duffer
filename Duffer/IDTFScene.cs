@@ -126,6 +126,17 @@ namespace Duffer
           set { _materialResources = value; }
       }
 
+      private Dictionary<string, TextureResource> _textureResources;
+      public Dictionary<string, TextureResource> TextureResources
+      {
+          get
+          {
+              if (_textureResources == null) { _textureResources = new Dictionary<string, TextureResource>(); }
+              return _textureResources;
+          }
+          set { _textureResources = value; }
+      }
+
       private Dictionary<string, MotionResource> _motionResources;
       public Dictionary<string, MotionResource> MotionResources
       {
@@ -147,6 +158,7 @@ namespace Duffer
          //<NODE_RESOURCES>
          //<SHADER_RESOURCES>
          //<MATERIAL_RESOURCES>
+         //<TEXTURE_RESOURCES>
          //<MOTION_RESOURCES>
          //<MODIFIERS>
 
@@ -206,6 +218,22 @@ namespace Duffer
                 {
                     output.WriteLine("\tRESOURCE {0} {{", i.ToString());
                     this.MaterialResources.ElementAt(i).Value.Export(output);
+                    output.WriteLine("\t}");
+                }
+                output.WriteLine("}");
+                output.WriteLine();
+            }
+
+            //<RESOURCE_LISTS> - Texture
+            if (this.TextureResources.Count() > 0)
+            {
+                output.WriteLine("RESOURCE_LIST \"TEXTURE\" {");
+                output.WriteLine("\tRESOURCE_COUNT {0}", this.TextureResources.Count().ToString());
+
+                for (int i = 0; i < this.TextureResources.Count(); i++)
+                {
+                    output.WriteLine("\tRESOURCE {0} {{", i.ToString());
+                    this.TextureResources.ElementAt(i).Value.Export(output);
                     output.WriteLine("\t}");
                 }
                 output.WriteLine("}");
