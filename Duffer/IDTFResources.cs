@@ -54,21 +54,7 @@ namespace Duffer
       {
           get { return ResourceListType.LIGHT; }
       }
-   }
-   public class ViewResource: Resource
-   {
-       
-
-       public override void Export(StreamWriter toStream)
-       {
-           
-       }
-
-       public override ResourceListType ResourceType
-       {
-           get { return ResourceListType.VIEW; }
-       }
-   }
+   }   
    public class ModelResource: Resource
    {
        public ModelType Type { get; set; }
@@ -103,7 +89,6 @@ namespace Duffer
            get { return ResourceListType.MODEL; }
        }
    } 
-
    public class ShaderResource: Resource
    {
        public string ShaderMaterialName { get; set; }
@@ -240,7 +225,24 @@ namespace Duffer
            get { return ResourceListType.TEXTURE; }
        }
    }
-    
+
+
+
+    /* NOT IMPLEMENTED */
+   public class ViewResource : Resource
+   {
+
+
+       public override void Export(StreamWriter toStream)
+       {
+
+       }
+
+       public override ResourceListType ResourceType
+       {
+           get { return ResourceListType.VIEW; }
+       }
+   }
    public class MotionResource
    {
 

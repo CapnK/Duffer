@@ -24,6 +24,16 @@ namespace Duffer
       MOTION
    }
 
+   public enum ModifierType
+   {
+       ANIMATION,
+       SHADING,
+       BONE_WEIGHT,
+       CLOD,
+       SUBDIV,
+       GLYPH
+   }
+
    /// <summary>
    /// Set the model visibility: NOT IMPLEMENTED
    /// </summary>

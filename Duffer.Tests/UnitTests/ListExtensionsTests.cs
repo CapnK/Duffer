@@ -375,5 +375,37 @@ namespace Duffer.Tests.UnitTests
             Assert.That(_lines[3], Iz.EqualTo("\t\t\t\t0.500000 0.500000 0.500000 1.000000"));  
             Assert.That(_lines[4], Iz.EqualTo("\t\t\t}"));
         }
+
+        [Test]
+        public void should_export_a_shader_list_with_two_shader_lists()
+        {
+            // Create a simple list of colors
+            Shader s1 = new Shader() { ShaderNameList = new List<string> { "ModelShader1", "ModelShader2", "ModelShader3" } };
+            Shader s2 = new Shader() { ShaderNameList = new List<string> { "AnotherShader"} };
+
+            var aList = new List<Shader> { s1, s2 };
+            ListExtensions.ExportShaderListToStream(aList, _mockStream.Object);
+
+            // Check the result
+            Assert.That(_lines.Count, Iz.EqualTo(17));
+
+            Assert.That(_lines[0], Iz.EqualTo("\t\tSHADER_LIST_COUNT 2"));
+            Assert.That(_lines[1], Iz.EqualTo("\t\tSHADING_GROUP {"));
+            Assert.That(_lines[2], Iz.EqualTo("\t\t\tSHADER_LIST 0 {"));
+            Assert.That(_lines[3], Iz.EqualTo("\t\t\t\tSHADER_COUNT 3"));
+            Assert.That(_lines[4], Iz.EqualTo("\t\t\t\tSHADER_NAME_LIST {"));
+            Assert.That(_lines[5], Iz.EqualTo("\t\t\t\t\tSHADER 0 NAME: \"ModelShader1\""));
+            Assert.That(_lines[6], Iz.EqualTo("\t\t\t\t\tSHADER 1 NAME: \"ModelShader2\""));
+            Assert.That(_lines[7], Iz.EqualTo("\t\t\t\t\tSHADER 2 NAME: \"ModelShader3\""));
+            Assert.That(_lines[8], Iz.EqualTo("\t\t\t\t}"));
+            Assert.That(_lines[9], Iz.EqualTo("\t\t\t}"));
+            Assert.That(_lines[10], Iz.EqualTo("\t\t\tSHADER_LIST 1 {"));
+            Assert.That(_lines[11], Iz.EqualTo("\t\t\t\tSHADER_COUNT 1"));
+            Assert.That(_lines[12], Iz.EqualTo("\t\t\t\tSHADER_NAME_LIST {"));
+            Assert.That(_lines[13], Iz.EqualTo("\t\t\t\t\tSHADER 0 NAME: \"AnotherShader\""));
+            Assert.That(_lines[14], Iz.EqualTo("\t\t\t\t}"));
+            Assert.That(_lines[15], Iz.EqualTo("\t\t\t}"));
+            Assert.That(_lines[16], Iz.EqualTo("\t\t}"));
+        }
     }
 }

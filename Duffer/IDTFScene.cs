@@ -148,6 +148,17 @@ namespace Duffer
          set { _motionResources = value; }
       }
 
+      private List<ShadingModifier> _shadingModifiers;
+      public List<ShadingModifier> ShadingModifiers
+      {
+          get
+          {
+              if (_shadingModifiers == null) { _shadingModifiers = new List<ShadingModifier>(); }
+              return _shadingModifiers;
+          }
+          set { _shadingModifiers = value; }
+      }
+
       public bool Export(string toFile)
       {
          // The IDTF file contains the following text blocks written in this order
@@ -273,6 +284,13 @@ namespace Duffer
                 output.WriteLine();
             }
 
+            //<MODIFIER> - Shading
+            foreach (ShadingModifier s in this.ShadingModifiers)
+            {
+                s.Export(output);
+            }
+
+
             output.Flush();
             output.Close();
          }
@@ -280,9 +298,6 @@ namespace Duffer
          return false;
       }
 
-      public void ExportResourceList(StreamWriter toStream, string resourceName, List<Resource> resourceList)
-      {
-          
-      }
+      
    }
 }

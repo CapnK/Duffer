@@ -8,12 +8,11 @@ using NUnit.Framework;
 
 namespace Duffer.Tests
 {
-
-   [TestFixture]
-   class IDTFNodeTests
-   {
+   //[TestFixture]
+   //class IDTFNodeTests
+   //{
 
       
 
-   }
+   //}
 }

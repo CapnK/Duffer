@@ -79,6 +79,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\ShadingModifiers.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShadingModifiers.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\ShaderResources.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,7 +100,7 @@
       <DependentUpon>Views.feature</DependentUpon>
     </Compile>
     <Compile Include="FileHelpers.cs" />
-    <Compile Include="IDTFNodeTests.cs" />
+    <Compile Include="UnitTests\IDTFNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\FileSteps.cs" />
     <Compile Include="Steps\GroupSteps.cs" />
@@ -106,6 +111,7 @@
     <Compile Include="Steps\ParentSteps.cs" />
     <Compile Include="Steps\SceneSteps.cs" />
     <Compile Include="Steps\ShaderResourceSteps.cs" />
+    <Compile Include="Steps\ShadingModifierSteps.cs" />
     <Compile Include="Steps\TextureResourceSteps.cs" />
     <Compile Include="Steps\ViewSteps.cs" />
     <Compile Include="UnitTests\BasicTypesTests.cs" />
@@ -141,6 +147,10 @@
     <None Include="Features\Models.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Models.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\ShadingModifiers.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ShadingModifiers.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\ShaderResources.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

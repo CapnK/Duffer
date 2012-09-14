@@ -27,6 +27,29 @@ namespace Duffer
             toStream.WriteLine("\t}");
         }
 
+        /* For "Shading modifier*/
+        internal static void ExportShaderListToStream(IList<Shader> list, StreamWriter toStream)
+        {
+            if (list.Count() == 0) return; //return if list has no items -> this isn't possible -> every model needs shading resource
+
+            toStream.WriteLine(String.Format("\t\tSHADER_LIST_COUNT {0}", list.Count().ToString()));
+            toStream.WriteLine(String.Format("\t\tSHADING_GROUP {{"));
+            for (int i = 0; i < list.Count; i++)
+            {
+                toStream.WriteLine(String.Format("\t\t\tSHADER_LIST {0} {{", i.ToString()));
+                toStream.WriteLine(String.Format("\t\t\t\tSHADER_COUNT {0}", list[i].ShaderNameList.Count().ToString()));
+                toStream.WriteLine(String.Format("\t\t\t\tSHADER_NAME_LIST {{"));
+                for (int j = 0; j < list[i].ShaderNameList.Count(); j++)
+                {
+                    toStream.WriteLine(String.Format("\t\t\t\t\tSHADER {0} NAME: \"{1}\"", j.ToString(), list[i].ShaderNameList[j]));
+                }
+                toStream.WriteLine(String.Format("\t\t\t\t}}"));
+                toStream.WriteLine(String.Format("\t\t\t}}"));
+            }
+
+            toStream.WriteLine(String.Format("\t\t}}"));
+        }
+
         /* For "MODEL RESOURCE_LIST*/
         internal static void ExportShadingListToStream(IList<ShadingDescription> list, StreamWriter toStream)
         {
