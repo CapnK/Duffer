@@ -73,7 +73,7 @@ namespace Duffer
         {          
             if (_textureCoordDimList != null)
             {
-                ListExtensions.ExportMeshFaceTextureCoordListToStream(_textureCoordDimList, toStream);
+                ListExtensions.ExportTextureCoordListToStream(_textureCoordDimList, toStream);
             }
         }
 
@@ -236,8 +236,8 @@ namespace Duffer
             ListExtensions.ExportInt3ListToStream(this.MeshFaceSpecularColorList, toStream, "MESH_FACE_SPECULAR_COLOR_LIST");
             ListExtensions.ExportPoint3ListToStream(this.ModelPositionList, toStream, "MODEL_POSITION_LIST");
             ListExtensions.ExportPoint3ListToStream(this.ModelNormalList, toStream, "MODEL_NORMAL_LIST");
-            ListExtensions.ExportColorListToStream(this.ModelDiffuseColorList, toStream, "MODEL_NORMAL_LIST");
-            ListExtensions.ExportColorListToStream(this.ModelSpecularColorList, toStream, "MODEL_NORMAL_LIST");
+            ListExtensions.ExportColor4ListToStream(this.ModelDiffuseColorList, toStream, "MODEL_NORMAL_LIST");
+            ListExtensions.ExportColor4ListToStream(this.ModelSpecularColorList, toStream, "MODEL_NORMAL_LIST");
             ListExtensions.ExportVector4ListToStream(this.ModelTextureCoordList, toStream, "MODEL_TEXURE_COORD_LIST");
             ListExtensions.ExportIntListToStream(this.MeshBasePositionList, toStream, "MESH_BASE_POSITION_LIST");
 

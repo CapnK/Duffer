@@ -60,45 +60,40 @@ namespace Duffer
         {
             if (list.Count() == 0) return;
 
-            toStream.WriteLine(String.Format("\t\t\tMESH_FACE_TEXTURE_COORD_LIST {"));
+            toStream.WriteLine(String.Format("\t\t\tMESH_FACE_TEXTURE_COORD_LIST {{"));
+            
             for (int i = 0; i < list.Count(); i++)
             {
                 toStream.WriteLine(String.Format("\t\t\t\tFACE {0} {{", i.ToString()));
-                ListExtensions.ExportMeshFaceTextureCoordListToStream(list[i].TextureCoordDimensionList, toStream);
-                toStream.WriteLine(String.Format("\t\t\t\t}", i.ToString()));
+                ListExtensions.ExportTextureCoordListToStream(list[i].TextureCoordDimensionList, toStream);
+                toStream.WriteLine(String.Format("\t\t\t\t}}", i.ToString()));
             }
-            toStream.WriteLine(String.Format("\t\t\t}"));
+            toStream.WriteLine(String.Format("\t\t\t}}"));
         }
-        internal static void ExportMeshFaceTextureCoordListToStream(IList<Int3> list, StreamWriter toStream)
+        internal static void ExportTextureCoordListToStream(IList<Int3> list, StreamWriter toStream)
         {
-            toStream.WriteLine("\t\t\t\t\tFACE {");
             for (int i = 0; i < list.Count; i++)
             {
-                toStream.WriteLine(String.Format("\t\t\t\t\t\tTEXTURE_LAYER {0}	TEx_COORD: {1}", i, list[i]));
+                toStream.WriteLine(String.Format("\t\t\t\t\tTEXTURE_LAYER {0} TEX_COORD: {1}", i, list[i].ToString()));
             }
-
-            toStream.WriteLine("\t\t\t\t\t}");
         }
 
         internal static void ExportInt3ListToStream(IList<Int3> list, StreamWriter toStream, string listName)
         {
             if (list.Count() == 0) return; //return if list has no items
 
-            toStream.WriteLine("\t\t\t{0} {{", listName);
+            toStream.WriteLine(String.Format("\t\t\t{0} {{", listName));
             for (int i = 0; i < list.Count; i++)
             {
-                //note: double {{ wil output as single { in string.format
                 toStream.WriteLine(String.Format("\t\t\t\t{0}", list[i].ToString()));
             }
-
             toStream.WriteLine("\t\t\t}");
-
         }
         internal static void ExportIntListToStream(IList<int> list, StreamWriter toStream, string listName)
         {
             if (list.Count() == 0) return; //return if list has no items
 
-            toStream.WriteLine("\t\t\t{0} {{", listName);
+            toStream.WriteLine(String.Format("\t\t\t{0} {{", listName));
             for (int i = 0; i < list.Count; i++)
             {
                 //note: double {{ wil output as single { in string.format
@@ -112,7 +107,7 @@ namespace Duffer
         {
             if (list.Count() == 0) return; //return if list has no items
 
-            toStream.WriteLine("\t\t\t{0} {{", listName);
+            toStream.WriteLine(String.Format("\t\t\t{0} {{", listName));
             for (int i = 0; i < list.Count; i++)
             {
                 //note: double {{ wil output as single { in string.format
@@ -126,7 +121,7 @@ namespace Duffer
         {
             if (list.Count() == 0) return; //return if list has no items
 
-            toStream.WriteLine("\t\t\t{0} {{", listName);
+            toStream.WriteLine(String.Format("\t\t\t{0} {{", listName));
             for (int i = 0; i < list.Count; i++)
             {
                 //note: double {{ wil output as single { in string.format
@@ -136,15 +131,15 @@ namespace Duffer
             toStream.WriteLine("\t\t\t}");
 
         }
-        internal static void ExportColorListToStream(IList<System.Drawing.Color> list, StreamWriter toStream, string listName)
+        internal static void ExportColor4ListToStream(IList<System.Drawing.Color> list, StreamWriter toStream, string listName)
         {
             if (list.Count() == 0) return; //return if list has no items
 
-            toStream.WriteLine("\t\t\t{0} {{", listName);
+            toStream.WriteLine(String.Format("\t\t\t{0} {{", listName));
             for (int i = 0; i < list.Count; i++)
             {
                 //note: double {{ wil output as single { in string.format
-                toStream.WriteLine(String.Format("\t\t\t\t{0}", list[i].ToIDTFStringRGB()));
+                toStream.WriteLine(String.Format("\t\t\t\t{0}", list[i].ToIDTFStringRGBA()));
             }
 
             toStream.WriteLine("\t\t\t}");
