@@ -21,7 +21,7 @@ namespace Duffer
     public abstract class Modifier
     {
         public string Name { get; set; }
-        public abstract ModifierType ResourceType { get; }
+        public abstract ModifierType Type { get; }
         public abstract void Export(StreamWriter toStream);
     }
 
@@ -38,7 +38,7 @@ namespace Duffer
             set { this._shaderList = value; }
         }
 
-        public override ModifierType ResourceType
+        public override ModifierType Type
         {
             get { return ModifierType.SHADING; }
         }

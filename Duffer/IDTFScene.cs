@@ -220,22 +220,6 @@ namespace Duffer
                 output.WriteLine();
             }
 
-            //<RESOURCE_LISTS> - Model   
-            if (this.ModelResources.Count() > 0)
-            {
-                output.WriteLine("RESOURCE_LIST \"MODEL\" {");
-                output.WriteLine("\tRESOURCE_COUNT {0}", this.ModelResources.Count().ToString());
-
-                for (int i = 0; i < this.ModelResources.Count(); i++)
-                {
-                    output.WriteLine("\tRESOURCE {0} {{", i.ToString());
-                    this.ModelResources.ElementAt(i).Value.Export(output);
-                    output.WriteLine("\t}");
-                }
-                output.WriteLine("}");
-                output.WriteLine();
-            }
-
             //<RESOURCE_LISTS> - Shader   
             if (this.ShaderResources.Count() > 0)
             {
@@ -283,6 +267,24 @@ namespace Duffer
                 output.WriteLine("}");
                 output.WriteLine();
             }
+
+            //<RESOURCE_LISTS> - Model   
+            if (this.ModelResources.Count() > 0)
+            {
+                output.WriteLine("RESOURCE_LIST \"MODEL\" {");
+                output.WriteLine("\tRESOURCE_COUNT {0}", this.ModelResources.Count().ToString());
+
+                for (int i = 0; i < this.ModelResources.Count(); i++)
+                {
+                    output.WriteLine("\tRESOURCE {0} {{", i.ToString());
+                    this.ModelResources.ElementAt(i).Value.Export(output);
+                    output.WriteLine("\t}");
+                }
+                output.WriteLine("}");
+                output.WriteLine();
+            }
+
+         
 
             //<MODIFIER> - Shading
             foreach (ShadingModifier s in this.ShadingModifiers)
