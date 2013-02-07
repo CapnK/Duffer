@@ -57,6 +57,12 @@ namespace Duffer
    }   
    public class ModelResource: Resource
    {
+       public ModelResource(ModelType type)
+           : base()
+       {
+           Type = type;
+       }
+
        public ModelType Type { get; set; }
 
        public MeshData Mesh { get; set; }
@@ -75,8 +81,8 @@ namespace Duffer
                        Mesh.Export(toStream);
                    break;
                case ModelType.LINE_SET:
-                   if (PointSet != null)
-                       PointSet.Export(toStream);
+                   if (LineSet != null)
+                       LineSet.Export(toStream);
                    break;
                case ModelType.POINT_SET:
                    if (PointSet != null)
@@ -225,9 +231,7 @@ namespace Duffer
            get { return ResourceListType.TEXTURE; }
        }
    }
-
-
-
+    
     /* NOT IMPLEMENTED */
    public class ViewResource : Resource
    {

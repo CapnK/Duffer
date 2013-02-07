@@ -93,6 +93,20 @@ namespace Duffer
             }
             toStream.WriteLine(String.Format("\t\t\t}}"));
         }
+        internal static void ExportLineTextureCoordListToStream(IList<LineTextureCoord> list, StreamWriter toStream)
+        {
+            if (list.Count() == 0) return;
+
+            toStream.WriteLine(String.Format("\t\t\tLINE_TEXTURE_COORD_LIST {{"));
+
+            for (int i = 0; i < list.Count(); i++)
+            {
+                toStream.WriteLine(String.Format("\t\t\t\tLINE {0} {{", i.ToString()));
+                ListExtensions.ExportTextureCoordListToStream(list[i].TextureCoordDimensionList, toStream);
+                toStream.WriteLine(String.Format("\t\t\t\t}}", i.ToString()));
+            }
+            toStream.WriteLine(String.Format("\t\t\t}}"));
+        }
         internal static void ExportTextureCoordListToStream(IList<Int3> list, StreamWriter toStream)
         {
             for (int i = 0; i < list.Count; i++)
@@ -100,7 +114,25 @@ namespace Duffer
                 toStream.WriteLine(String.Format("\t\t\t\t\tTEXTURE_LAYER {0} TEX_COORD: {1}", i, list[i].ToString()));
             }
         }
+        internal static void ExportTextureCoordListToStream(IList<Int2> list, StreamWriter toStream)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                toStream.WriteLine(String.Format("\t\t\t\t\tTEXTURE_LAYER {0} TEX_COORD: {1}", i, list[i].ToString()));
+            }
+        }
 
+        internal static void ExportInt2ListToStream(IList<Int2> list, StreamWriter toStream, string listName)
+        {
+            if (list.Count() == 0) return; //return if list has no items
+
+            toStream.WriteLine(String.Format("\t\t\t{0} {{", listName));
+            for (int i = 0; i < list.Count; i++)
+            {
+                toStream.WriteLine(String.Format("\t\t\t\t{0}", list[i].ToString()));
+            }
+            toStream.WriteLine("\t\t\t}");
+        }
         internal static void ExportInt3ListToStream(IList<Int3> list, StreamWriter toStream, string listName)
         {
             if (list.Count() == 0) return; //return if list has no items

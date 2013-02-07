@@ -79,7 +79,6 @@ namespace Duffer
       public Model()
       {
          this.Type = NodeType.MODEL;
-
       }
 
       public ModelResource Resource { get; set; }

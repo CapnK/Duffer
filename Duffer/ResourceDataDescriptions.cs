@@ -76,9 +76,33 @@ namespace Duffer
                 ListExtensions.ExportTextureCoordListToStream(_textureCoordDimList, toStream);
             }
         }
-
     }
-    
+    public class LineTextureCoord
+    {
+
+        private List<Int2> _textureCoordDimList;
+        public List<Int2> TextureCoordDimensionList
+        {
+            get
+            {
+                if (_textureCoordDimList == null) { _textureCoordDimList = new List<Int2>(); }
+                return _textureCoordDimList;
+            }
+            set
+            {
+                _textureCoordDimList = value;
+            }
+        }
+
+        internal void Export(StreamWriter toStream)
+        {
+            if (_textureCoordDimList != null)
+            {
+                ListExtensions.ExportTextureCoordListToStream(_textureCoordDimList, toStream);
+            }
+        }
+    }
+
     public class MeshData
     {
         private List<ShadingDescription> _shadingDescriptionList;
@@ -248,7 +272,156 @@ namespace Duffer
 
     public class LineSetData
     {
-        public void Export(StreamWriter toStream) { }
+        private List<ShadingDescription> _shadingDescriptionList;
+        private List<Int2> _linePositionList;
+        private List<Int2> _lineNormalList;
+        private List<int> _lineShadingList;
+        private List<LineTextureCoord> _lineTextureCoordinateList;
+        private List<Int2> _lineDiffuseColorList;
+        private List<Int2> _lineSpecularColorList;
+        private List<Point3> _modelPositionList;
+        private List<Point3> _modelNormalList;
+        private List<Color> _modelDiffuseColorList;
+        private List<Color> _modelSpecularColorList;
+        private List<Vector4> _modelTextureCoordList;
+
+        public List<ShadingDescription> ShadingDescriptionList
+        {
+            get
+            {
+                if (_shadingDescriptionList == null) _shadingDescriptionList = new List<ShadingDescription>();
+                return _shadingDescriptionList;
+            }
+            set { this._shadingDescriptionList = value; }
+        }
+        public List<Int2> LinePositionList
+        {
+            get
+            {
+                if (_linePositionList == null) _linePositionList = new List<Int2>();
+                return _linePositionList;
+            }
+            set { _linePositionList = value; }
+        }
+        public List<Int2> LineNormalList
+        {
+            get
+            {
+                if (_lineNormalList == null) _lineNormalList = new List<Int2>();
+                return _lineNormalList;
+            }
+            set { _lineNormalList = value; }
+        }
+        public List<int> LineShadingList
+        {
+            get
+            {
+                if (this._lineShadingList == null) this._lineShadingList = new List<int>();
+                return this._lineShadingList;
+            }
+            set { this._lineShadingList = value; }
+        }
+        public List<LineTextureCoord> LineTextureCoordinateList
+        {
+            get
+            {
+                if (_lineTextureCoordinateList == null) _lineTextureCoordinateList = new List<LineTextureCoord>();
+                return _lineTextureCoordinateList;
+            }
+            set { _lineTextureCoordinateList = value; }
+        }
+        public List<Int2> LineDiffuseColorList
+        {
+            get
+            {
+                if (this._lineDiffuseColorList == null) this._lineDiffuseColorList = new List<Int2>();
+                return this._lineDiffuseColorList;
+            }
+            set { this._lineDiffuseColorList = value; }
+        }
+        public List<Int2> LineSpecularColorList
+        {
+            get
+            {
+                if (_lineSpecularColorList == null) _lineSpecularColorList = new List<Int2>();
+                return _lineSpecularColorList;
+            }
+            set { _lineSpecularColorList = value; }
+        }
+        public List<Point3> ModelPositionList
+        {
+            get
+            {
+                if (this._modelPositionList == null) this._modelPositionList = new List<Point3>();
+                return this._modelPositionList;
+            }
+            set { this._modelPositionList = value; }
+        }
+        public List<Point3> ModelNormalList
+        {
+            get
+            {
+                if (this._modelNormalList == null) this._modelNormalList = new List<Point3>();
+                return this._modelNormalList;
+            }
+            set { this._modelNormalList = value; }
+        }
+        public List<Color> ModelDiffuseColorList
+        {
+            get
+            {
+                if (this._modelDiffuseColorList == null) this._modelDiffuseColorList = new List<Color>();
+                return this._modelDiffuseColorList;
+            }
+            set { this._modelDiffuseColorList = value; }
+        }
+        public List<Color> ModelSpecularColorList
+        {
+            get
+            {
+                if (this._modelSpecularColorList == null) this._modelSpecularColorList = new List<Color>();
+                return this._modelSpecularColorList;
+            }
+            set { this._modelSpecularColorList = value; }
+        }
+        public List<Vector4> ModelTextureCoordList
+        {
+            get
+            {
+                if (this._modelTextureCoordList == null) this._modelTextureCoordList = new List<Vector4>();
+                return this._modelTextureCoordList;
+            }
+            set { this._modelTextureCoordList = value; }
+        }
+        
+
+        public void Export(StreamWriter toStream)  
+        {
+            toStream.WriteLine(String.Format("\t\tLINE_SET {{"));
+
+            toStream.WriteLine(String.Format("\t\t\tLINE_COUNT {0}", LinePositionList.Count().ToString()));
+            toStream.WriteLine(String.Format("\t\t\tMODEL_POSITION_COUNT {0}", ModelPositionList.Count().ToString()));
+            toStream.WriteLine(String.Format("\t\t\tMODEL_NORMAL_COUNT {0}", ModelNormalList.Count().ToString()));
+            toStream.WriteLine(String.Format("\t\t\tMODEL_DIFFUSE_COLOR_COUNT {0}", ModelDiffuseColorList.Count().ToString()));
+            toStream.WriteLine(String.Format("\t\t\tMODEL_SPECULAR_COLOR_COUNT {0}", ModelSpecularColorList.Count().ToString()));
+            toStream.WriteLine(String.Format("\t\t\tMODEL_TEXTURE_COORD_COUNT {0}", ModelTextureCoordList.Count().ToString()));
+            toStream.WriteLine(String.Format("\t\t\tMODEL_SHADING_COUNT {0}", ShadingDescriptionList.Count().ToString()));
+
+            ListExtensions.ExportShadingListToStream(ShadingDescriptionList, toStream);
+            ListExtensions.ExportInt2ListToStream(LinePositionList, toStream, "LINE_POSITION_LIST");
+            ListExtensions.ExportInt2ListToStream(LineNormalList, toStream, "LINE_NORMAL_LIST");
+            ListExtensions.ExportIntListToStream(LineShadingList, toStream, "LINE_SHADING_LIST");
+            ListExtensions.ExportLineTextureCoordListToStream(LineTextureCoordinateList, toStream);
+            ListExtensions.ExportInt2ListToStream(LineDiffuseColorList, toStream, "LINE_DIFFUSE_COLOR_LIST");
+            ListExtensions.ExportInt2ListToStream(LineSpecularColorList, toStream, "LINE_SPECULAR_COLOR_LIST");
+            ListExtensions.ExportPoint3ListToStream(ModelPositionList, toStream, "MODEL_POSITION_LIST");
+            ListExtensions.ExportPoint3ListToStream(ModelNormalList, toStream, "MODEL_NORMAL_LIST");
+            ListExtensions.ExportColor4ListToStream(ModelDiffuseColorList, toStream, "MODEL_DIFFUSE_COLOR_LIST");
+            ListExtensions.ExportColor4ListToStream(ModelSpecularColorList, toStream, "MODEL_NORMAL_LIST");
+            ListExtensions.ExportVector4ListToStream(ModelTextureCoordList, toStream, "MODEL_TEXTURE_COORD_LIST");
+
+            toStream.WriteLine(String.Format("\t\t}}"));
+        }
     }
 
     public class PointSetData

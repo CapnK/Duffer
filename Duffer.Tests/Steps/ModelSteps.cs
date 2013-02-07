@@ -22,8 +22,7 @@ namespace Duffer.Tests.Steps
          // Also add v1 to the scenario so we can find it
          ScenarioContext.Current.Set<Model>(m1, modelName);
       }
-
-
+       
       [Given(@"the model named ""(.*)"" has a parent called ""(.*)""")]
       public void GivenTheModelNamedXHasAParentCalledY(string modelName, string parentName)
       {
@@ -42,7 +41,7 @@ namespace Duffer.Tests.Steps
       {
          Model m1 = ScenarioContext.Current.Get<Model>(modelName);
 
-         ModelResource r1 = new ModelResource();
+         ModelResource r1 = new ModelResource(ModelType.MESH);
          r1.Name = resourceName;
 
          m1.Resource = r1;
@@ -50,7 +49,5 @@ namespace Duffer.Tests.Steps
          //also add the ModelResource to the ScenarioContext to get it later
          ScenarioContext.Current.Set<ModelResource>(r1, resourceName);  
       }
-
-
    }
 }

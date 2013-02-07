@@ -33,6 +33,13 @@ namespace Duffer.Tests.UnitTests
 
           Assert.That(p.ToString(), Iz.EqualTo("1 2 3"));
       }
+       [Test]
+       public void should_print_int2_to_string()
+       {
+           Int2 p = new Int2(1, 3);
+
+           Assert.That(p.ToString(), Iz.EqualTo("1 3"));
+       }
 
    }
 }
