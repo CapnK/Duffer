@@ -83,8 +83,10 @@ namespace Duffer
 
       public ModelResource Resource { get; set; }
 
-      // Not implemented yet, no examples in the standard u3d samples
-      //public ModelVisibility? Visibility { get; set; }
+      /// <summary>
+      /// Determine wether faces in the model should be visible form front only, back only or both sides
+      /// </summary>
+      public ModelVisibility? Visibility { get; set; }
 
       public void WriteOutput(StreamWriter toStream)
       {
@@ -98,11 +100,10 @@ namespace Duffer
             toStream.WriteLine(String.Format("\tRESOURCE_NAME \"{0}\"", this.Resource.Name));
          }
 
-         // Not implemented yet, no examples in the standard u3d samples
-         //if (this.Visibility.HasValue)
-         //{
-         //   toStream.WriteLine(String.Format("\tMODEL_VISIBILITY \"{0}\"", this.Visibility.Value.ToString()));
-         //}
+         if (this.Visibility.HasValue)
+         {
+            toStream.WriteLine(String.Format("\tMODEL_VISIBILITY \"{0}\"", this.Visibility.Value.ToString()));
+         }
 
          base.WriteMetaData(toStream);
 

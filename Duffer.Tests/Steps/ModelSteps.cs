@@ -49,5 +49,13 @@ namespace Duffer.Tests.Steps
          //also add the ModelResource to the ScenarioContext to get it later
          ScenarioContext.Current.Set<ModelResource>(r1, resourceName);  
       }
+
+      [Given(@"the model named ""(.*)"" is visible from both sides")]
+      public void GivenTheModelNamedIsVisibleFromBothSides(string modelName)
+      {
+          Model m1 = ScenarioContext.Current.Get<Model>(modelName);
+          m1.Visibility = ModelVisibility.BOTH;
+      }
+
    }
 }

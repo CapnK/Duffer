@@ -35,7 +35,7 @@ namespace Duffer
    }
 
    /// <summary>
-   /// Set the model visibility: NOT IMPLEMENTED
+   /// Set the model visibility
    /// </summary>
    public enum ModelVisibility
    {
