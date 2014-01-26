@@ -69,6 +69,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MaterialResources.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\MetaData.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\ModelResources.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +105,7 @@
       <DependentUpon>Views.feature</DependentUpon>
     </Compile>
     <Compile Include="FileHelpers.cs" />
+    <Compile Include="Steps\MetaDataSteps.cs" />
     <Compile Include="UnitTests\IDTFNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\FileSteps.cs" />
@@ -139,6 +145,10 @@
     <None Include="Features\MaterialResources.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>MaterialResources.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\MetaData.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MetaData.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\ModelResources.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
