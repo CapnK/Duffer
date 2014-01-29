@@ -256,5 +256,21 @@ namespace Duffer
                 toStream.WriteLine("\t\t\t}");
             }
         }
+
+        internal static void ExportAdobeMetaDataDictionaryToStream(IDictionary<string, string> dict,
+                                                                   StreamWriter toStream)
+        {
+            // Build up a string like:  META_DATA_VALUE  "<namespace name=\"24578\"> <item name=\"Area:\" value=\"377.092\"/> <item name=\"Density:\" value=\"0.036\"/> </namespace>"
+            var sb = new StringBuilder();
+            sb.Append("\t\t\tMETA_DATA_VALUE \"<namespace name=\\\"24578\\\">");
+
+            foreach (var kvp in dict)
+            {
+                sb.AppendFormat(" <item name=\\\"{0}\\\" value=\\\"{1}\\\"/>", kvp.Key, kvp.Value);
+            }
+
+            sb.Append(" </namespace>\"");
+            toStream.WriteLine(sb.ToString());
+        }
     }
 }

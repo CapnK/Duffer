@@ -79,8 +79,9 @@ Scenario: scene with RHAdobeMeta model meta data
 			META_DATA 0 {
 				META_DATA_ATTRIBUTE "STRING"
 				META_DATA_KEY "RHAdobeMeta"
-				META_DATA_VALUE "<namespace name=\"24578\"> <item name=\"Area:\" value=\"377.092\"/> <item name=\"Density:\" value=\"0.036\"/> </namespace>"
+				META_DATA_VALUE "<namespace name=\"24578\"> <item name=\"Area\" value=\"377.092\"/> <item name=\"Density\" value=\"0.036\"/> </namespace>"
 			}
 		}
 	}
+
 	"""

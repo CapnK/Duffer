@@ -183,10 +183,11 @@ NODE ""MODEL"" {
 		META_DATA 0 {
 			META_DATA_ATTRIBUTE ""STRING""
 			META_DATA_KEY ""RHAdobeMeta""
-			META_DATA_VALUE ""<namespace name=\""24578\""> <item name=\""Area:\"" value=\""377.092\""/> <item name=\""Density:\"" value=\""0.036\""/> </namespace>""
+			META_DATA_VALUE ""<namespace name=\""24578\""> <item name=\""Area\"" value=\""377.092\""/> <item name=\""Density\"" value=\""0.036\""/> </namespace>""
 		}
 	}
-}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+}
+", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
