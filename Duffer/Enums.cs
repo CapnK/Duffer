@@ -118,4 +118,10 @@ namespace Duffer
        JPEG8,
        PNG
    }
+
+    public enum MetaDataType
+    {
+        STRING,
+        BINARY
+    }
 }

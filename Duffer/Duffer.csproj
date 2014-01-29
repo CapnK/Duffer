@@ -53,6 +53,8 @@
     <Compile Include="IDTFNodes.cs" />
     <Compile Include="IDTFResources.cs" />
     <Compile Include="ListExtensions.cs" />
+    <Compile Include="MetaData.cs" />
+    <Compile Include="MetaDataItem.cs" />
     <Compile Include="ModifierDataDescriptions.cs" />
     <Compile Include="Parent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

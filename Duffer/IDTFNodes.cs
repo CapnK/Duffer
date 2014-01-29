@@ -14,6 +14,10 @@ namespace Duffer
 
    public abstract class Node
    {
+       public Node()
+       {
+           this.MetaData = new MetaData();
+       }
 
       public string Name { get; set; }
 
@@ -34,6 +38,8 @@ namespace Duffer
          }
       }
 
+      public MetaData MetaData { get; private set; }
+
       protected void WriteCommonOutputWithoutMetaData(StreamWriter toStream)
       {
          toStream.WriteLine(String.Format("\tNODE_NAME \"{0}\"", this.Name));
@@ -45,7 +51,7 @@ namespace Duffer
 
       protected void WriteMetaData(StreamWriter toStream)
       {
-
+          this.MetaData.WriteOutput(toStream);
       }
 
    }
@@ -53,8 +59,9 @@ namespace Duffer
 
    public class Group : Node
    {
-      public Group() 
+      public Group() : base()
       {
+         
          this.Type = NodeType.GROUP;
       
       }
@@ -76,7 +83,7 @@ namespace Duffer
 
    public class Model : Node
    {
-      public Model()
+       public Model(): base()
       {
          this.Type = NodeType.MODEL;
       }
@@ -115,7 +122,7 @@ namespace Duffer
 
    public class Light : Node
    {
-      public Light()
+       public Light() : base()
       {
          this.Type = NodeType.LIGHT;
 
@@ -145,7 +152,7 @@ namespace Duffer
 
    public class View : Node
    {
-      public View()
+       public View() : base()
       {
          this.Type = NodeType.VIEW;
          this.ViewData = new ViewData();

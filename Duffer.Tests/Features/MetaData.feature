@@ -8,7 +8,7 @@ Scenario: scene with basic model meta data
 	And the model named "Box01" has a parent called "Parent1" 
 	And the model named "Box01" has a resource called "BoxModel"
 	And the parent named "Parent1" has an identity transform matrix
-	And the metadata for "Box01" has the following entries
+	And the metadata for the model named "Box01" has the following entries
 	| key  | value  |
 	| aKey | aValue |
 	When I export the current scene to a file
@@ -49,7 +49,7 @@ Scenario: scene with RHAdobeMeta model meta data
 	And the model named "Box01" has a parent called "Parent1" 
 	And the model named "Box01" has a resource called "BoxModel"
 	And the parent named "Parent1" has an identity transform matrix
-	And the metadata for "Box01" has a RHAdobeMeta entry with the following values
+	And the metadata for the model named "Box01" has a RHAdobeMeta entry with the following values
 	| key     | value   |
 	| Area    | 377.092 |
 	| Density | 0.036   |

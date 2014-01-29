@@ -90,7 +90,7 @@ this.ScenarioSetup(scenarioInfo);
                         "aKey",
                         "aValue"});
 #line 11
- testRunner.And("the metadata for \"Box01\" has the following entries", ((string)(null)), table1, "And ");
+ testRunner.And("the metadata for the model named \"Box01\" has the following entries", ((string)(null)), table1, "And ");
 #line 14
  testRunner.When("I export the current scene to a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -154,7 +154,8 @@ this.ScenarioSetup(scenarioInfo);
                         "Density",
                         "0.036"});
 #line 52
- testRunner.And("the metadata for \"Box01\" has a RHAdobeMeta entry with the following values", ((string)(null)), table2, "And ");
+ testRunner.And("the metadata for the model named \"Box01\" has a RHAdobeMeta entry with the followi" +
+                    "ng values", ((string)(null)), table2, "And ");
 #line 56
  testRunner.When("I export the current scene to a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
