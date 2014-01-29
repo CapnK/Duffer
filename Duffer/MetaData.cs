@@ -39,7 +39,7 @@ namespace Duffer
                 var metadataIndex = 0;
                 if (RHAdobeMetaData.Count > 0)
                 {
-                    toStream.WriteLine("\t\tMETA_DATA 0 {");
+                    toStream.WriteLine(String.Format("\t\tMETA_DATA {0} {{", metadataIndex));
 				    toStream.WriteLine("\t\t\tMETA_DATA_ATTRIBUTE \"STRING\"");
                     toStream.WriteLine("\t\t\tMETA_DATA_KEY \"RHAdobeMeta\"");
                     ListExtensions.ExportAdobeMetaDataDictionaryToStream(RHAdobeMetaData, toStream);
@@ -49,7 +49,12 @@ namespace Duffer
 
                 if (GenericMetaData.Count > 0)
                 {
-                    
+                    foreach (var item in GenericMetaData)
+                    {
+                        toStream.WriteLine(String.Format("\t\tMETA_DATA {0} {{", metadataIndex));
+                        item.WriteOutput(toStream);
+                        toStream.WriteLine("\t\t}");
+                    }
                 }
 
                 toStream.WriteLine("\t}");  //Close out the meta data block

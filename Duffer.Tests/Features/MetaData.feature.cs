@@ -121,7 +121,8 @@ NODE ""MODEL"" {
 			META_DATA_VALUE ""aValue""
 		}
 	}
-}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+}
+", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -131,17 +132,17 @@ NODE ""MODEL"" {
         public virtual void SceneWithRHAdobeMetaModelMetaData()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("scene with RHAdobeMeta model meta data", ((string[])(null)));
-#line 46
-this.ScenarioSetup(scenarioInfo);
 #line 47
- testRunner.Given("I have a new current scene", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 48
- testRunner.And("the current scene contains a model named \"Box01\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a new current scene", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 49
- testRunner.And("the model named \"Box01\" has a parent called \"Parent1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the current scene contains a model named \"Box01\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 50
- testRunner.And("the model named \"Box01\" has a resource called \"BoxModel\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the model named \"Box01\" has a parent called \"Parent1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 51
+ testRunner.And("the model named \"Box01\" has a resource called \"BoxModel\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
  testRunner.And("the parent named \"Parent1\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -153,13 +154,13 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "Density",
                         "0.036"});
-#line 52
+#line 53
  testRunner.And("the metadata for the model named \"Box01\" has a RHAdobeMeta entry with the followi" +
                     "ng values", ((string)(null)), table2, "And ");
-#line 56
+#line 57
  testRunner.When("I export the current scene to a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 57
+#line 58
  testRunner.Then("the contents of the current file should be", @"FILE_FORMAT ""IDTF""
 FORMAT_VERSION 100
 
@@ -184,6 +185,86 @@ NODE ""MODEL"" {
 			META_DATA_ATTRIBUTE ""STRING""
 			META_DATA_KEY ""RHAdobeMeta""
 			META_DATA_VALUE ""<namespace name=\""24578\""> <item name=\""Area\"" value=\""377.092\""/> <item name=\""Density\"" value=\""0.036\""/> </namespace>""
+		}
+	}
+}
+", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("scene with RHAdobeMeta model meta data and basic metadata")]
+        public virtual void SceneWithRHAdobeMetaModelMetaDataAndBasicMetadata()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("scene with RHAdobeMeta model meta data and basic metadata", ((string[])(null)));
+#line 90
+this.ScenarioSetup(scenarioInfo);
+#line 91
+ testRunner.Given("I have a new current scene", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 92
+ testRunner.And("the current scene contains a model named \"Box01\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.And("the model named \"Box01\" has a parent called \"Parent1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.And("the model named \"Box01\" has a resource called \"BoxModel\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 95
+ testRunner.And("the parent named \"Parent1\" has an identity transform matrix", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "key",
+                        "value"});
+            table3.AddRow(new string[] {
+                        "aKey",
+                        "aValue"});
+#line 96
+ testRunner.And("the metadata for the model named \"Box01\" has the following entries", ((string)(null)), table3, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "key",
+                        "value"});
+            table4.AddRow(new string[] {
+                        "Area",
+                        "377.092"});
+            table4.AddRow(new string[] {
+                        "Density",
+                        "0.036"});
+#line 99
+ testRunner.And("the metadata for the model named \"Box01\" has a RHAdobeMeta entry with the followi" +
+                    "ng values", ((string)(null)), table4, "And ");
+#line 103
+ testRunner.When("I export the current scene to a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 104
+ testRunner.Then("the contents of the current file should be", @"FILE_FORMAT ""IDTF""
+FORMAT_VERSION 100
+
+NODE ""MODEL"" {
+	NODE_NAME ""Box01""
+	PARENT_LIST {
+		PARENT_COUNT 1
+		PARENT 0 {
+			PARENT_NAME ""Parent1""
+			PARENT_TM {
+				1.000000 0.000000 0.000000 0.000000
+				0.000000 1.000000 0.000000 0.000000
+				0.000000 0.000000 1.000000 0.000000
+				0.000000 0.000000 0.000000 1.000000
+			}
+		}
+	}
+	RESOURCE_NAME ""BoxModel""
+	META_DATA {
+		META_DATA_COUNT 2
+		META_DATA 0 {
+			META_DATA_ATTRIBUTE ""STRING""
+			META_DATA_KEY ""RHAdobeMeta""
+			META_DATA_VALUE ""<namespace name=\""24578\""> <item name=\""Area\"" value=\""377.092\""/> <item name=\""Density\"" value=\""0.036\""/> </namespace>""
+		}
+		META_DATA 1 {
+			META_DATA_ATTRIBUTE ""STRING""
+			META_DATA_KEY ""aKey""
+			META_DATA_VALUE ""aValue""
 		}
 	}
 }

@@ -32,7 +32,9 @@ namespace Duffer
 
         public override void WriteOutput(StreamWriter toStream)
         {
-            throw new NotImplementedException();
+            toStream.WriteLine("\t\t\tMETA_DATA_ATTRIBUTE \"STRING\"");
+            toStream.WriteLine(String.Format("\t\t\tMETA_DATA_KEY \"{0}\"",Key));
+            toStream.WriteLine(String.Format("\t\t\tMETA_DATA_VALUE \"{0}\"",Value));
         }
 
     }
